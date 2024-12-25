@@ -1,33 +1,40 @@
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Info } from "lucide-react";
 
 export default function LoginVerifyEmail(props: PageProps<Extract<KcContext, { pageId: "login-verify-email.ftl" }>, I18n>) {
-  const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
-
+  const { kcContext, i18n, Template } = props;
   const { msg } = i18n;
-
   const { url, user } = kcContext;
 
   return (
-    <Template
-      kcContext={kcContext}
-      i18n={i18n}
-      doUseDefaultCss={doUseDefaultCss}
-      classes={classes}
-      displayInfo
-      headerNode={msg("emailVerifyTitle")}
-      infoNode={
-        <p className="instruction">
-          {msg("emailVerifyInstruction2")}
-          <br />
-          <a href={url.loginAction}>{msg("doClickHere")}</a>
-          &nbsp;
-          {msg("emailVerifyInstruction3")}
-        </p>
-      }
-    >
-      <p className="instruction">{msg("emailVerifyInstruction1", user?.email ?? "")}</p>
+    <Template {...props} displayInfo headerNode={msg("emailVerifyTitle")}>
+      <div className="w-full max-w-md">
+        <div className="py-2 px-4 sm:rounded-lg sm:px-6">
+          <div className="space-y-6">
+            {/* Primary instruction with email */}
+            <Alert>
+              <Info className="h-4 w-4" />
+              <AlertDescription className="text-sm">{msg("emailVerifyInstruction1", user?.email ?? "")}</AlertDescription>
+            </Alert>
+
+            {/* Secondary instructions with link */}
+            <div className="space-y-4 text-sm text-gray-600">
+              <p>{msg("emailVerifyInstruction2")}</p>
+
+              <p>
+                <a href={url.loginAction} className="text-indigo-600 hover:text-indigo-500 font-medium">
+                  {msg("doClickHere")}
+                </a>
+                &nbsp;
+                {msg("emailVerifyInstruction3")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </Template>
   );
 }
