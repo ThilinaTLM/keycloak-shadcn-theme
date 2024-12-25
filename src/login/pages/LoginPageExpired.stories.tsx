@@ -4,8 +4,8 @@ import { createKcPageStory } from "../KcPageStory";
 const { KcPageStory } = createKcPageStory({ pageId: "login-page-expired.ftl" });
 
 const meta = {
-    title: "login/login-page-expired.ftl",
-    component: KcPageStory
+  title: "login/login-page-expired.ftl",
+  component: KcPageStory
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -13,7 +13,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: () => <KcPageStory />
+  render: () => <KcPageStory />
 };
 
 /**
@@ -23,18 +23,18 @@ export const Default: Story = {
  * - Key Aspect: Ensures that error messages are displayed correctly in addition to the page expiration notice.
  */
 export const WithErrorMessage: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                url: {
-                    loginRestartFlowUrl: "/mock-restart-flow",
-                    loginAction: "/mock-continue-login"
-                },
-                message: {
-                    type: "error",
-                    summary: "An error occurred while processing your session."
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        url: {
+          loginRestartFlowUrl: "/mock-restart-flow",
+          loginAction: "/mock-continue-login"
+        },
+        message: {
+          type: "error",
+          summary: "An error occurred while processing your session."
+        }
+      }}
+    />
+  )
 };

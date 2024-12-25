@@ -4,8 +4,8 @@ import { createKcPageStory } from "../KcPageStory";
 const { KcPageStory } = createKcPageStory({ pageId: "login-update-profile.ftl" });
 
 const meta = {
-    title: "login/login-update-profile.ftl",
-    component: KcPageStory
+  title: "login/login-update-profile.ftl",
+  component: KcPageStory
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -13,7 +13,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: () => <KcPageStory />
+  render: () => <KcPageStory />
 };
 
 /**
@@ -23,18 +23,18 @@ export const Default: Story = {
  * - Key Aspect: Ensures the profile fields show error messages when validation fails.
  */
 export const WithProfileError: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                url: {
-                    loginAction: "/mock-login-action"
-                },
-                messagesPerField: {
-                    existsError: (field: string) => field === "email",
-                    get: () => "Invalid email format"
-                },
-                isAppInitiatedAction: false
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        url: {
+          loginAction: "/mock-login-action"
+        },
+        messagesPerField: {
+          existsError: (field: string) => field === "email",
+          get: () => "Invalid email format"
+        },
+        isAppInitiatedAction: false
+      }}
+    />
+  )
 };

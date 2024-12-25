@@ -3,28 +3,28 @@ import { createKcPageStory } from "../KcPageStory";
 
 // Mock kcContext to simulate real environment
 const mockKcContext = {
-    url: {
-        oauthAction: "/oauth-action"
+  url: {
+    oauthAction: "/oauth-action"
+  },
+  oauth: {
+    clientScopesRequested: [{ consentScreenText: "Scope1", dynamicScopeParameter: "dynamicScope1" }, { consentScreenText: "Scope2" }],
+    code: "mockCode"
+  },
+  client: {
+    attributes: {
+      policyUri: "https://twitter.com/en/tos",
+      tosUri: "https://twitter.com/en/privacy"
     },
-    oauth: {
-        clientScopesRequested: [{ consentScreenText: "Scope1", dynamicScopeParameter: "dynamicScope1" }, { consentScreenText: "Scope2" }],
-        code: "mockCode"
-    },
-    client: {
-        attributes: {
-            policyUri: "https://twitter.com/en/tos",
-            tosUri: "https://twitter.com/en/privacy"
-        },
-        name: "Twitter",
-        clientId: "twitter-client-id"
-    }
+    name: "Twitter",
+    clientId: "twitter-client-id"
+  }
 };
 
 const { KcPageStory } = createKcPageStory({ pageId: "login-oauth-grant.ftl" });
 
 const meta = {
-    title: "login/login-oauth-grant.ftl",
-    component: KcPageStory
+  title: "login/login-oauth-grant.ftl",
+  component: KcPageStory
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -38,7 +38,7 @@ type Story = StoryObj<typeof meta>;
  * - Key Aspect: Ensures the component works with a realistic `logoUri` and client name.
  */
 export const Default: Story = {
-    render: () => <KcPageStory kcContext={mockKcContext} />
+  render: () => <KcPageStory kcContext={mockKcContext} />
 };
 
 /**
@@ -48,17 +48,17 @@ export const Default: Story = {
  * - Key Aspect: Ensures the component renders correctly when there are no requested scopes.
  */
 export const WithoutScopes: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                ...mockKcContext,
-                oauth: {
-                    ...mockKcContext.oauth,
-                    clientScopesRequested: []
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        ...mockKcContext,
+        oauth: {
+          ...mockKcContext.oauth,
+          clientScopesRequested: []
+        }
+      }}
+    />
+  )
 };
 
 /**
@@ -68,18 +68,18 @@ export const WithoutScopes: Story = {
  * - Key Aspect: Ensures that the component can display error messages when form submission fails.
  */
 export const WithFormSubmissionError: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                ...mockKcContext,
-                url: {
-                    oauthAction: "/error"
-                },
-                message: {
-                    type: "error",
-                    summary: "An error occurred during form submission."
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        ...mockKcContext,
+        url: {
+          oauthAction: "/error"
+        },
+        message: {
+          type: "error",
+          summary: "An error occurred during form submission."
+        }
+      }}
+    />
+  )
 };
