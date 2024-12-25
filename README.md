@@ -1,60 +1,103 @@
-<p align="center">
-    <i>🚀 <a href="https://keycloakify.dev">Keycloakify</a> v11 starter 🚀</i>
-    <br/>
-    <br/>
-</p>
+# Shadcn Keycloak Theme
 
-This starter is based on Vite. There is also [a Webpack based starter](https://github.com/keycloakify/keycloakify-starter-webpack).
+A modern and customizable Keycloak theme built with [Keycloakify](https://www.keycloakify.dev/) and [shadcn/ui](https://ui.shadcn.com/). This theme provides a beautiful, responsive, and accessible user interface for Keycloak login pages.
 
-# Quick start
+## Features
 
+- 🎨 Modern UI using shadcn/ui components
+- 🔒 Supports essential login theme pages:
+  - Login
+  - Registration
+  - Password Reset
+  - OTP/2FA
+  - Email Verification
+  - Password Update
+  - Logout Confirmation
+  - Error Pages
+- 🌐 Internationalization support
+- 📱 Fully responsive design
+- ♿ Accessibility focused
+- 🛠️ Built with TypeScript and React
+
+## Prerequisites
+
+- Node.js (^18.0.0 || >=20.0.0)
+- Docker and Docker Compose
+- Java Development Kit (JDK) 17 (for local development)
+
+## Quick Start
+
+1. Clone the repository:
 ```bash
-git clone https://github.com/keycloakify/keycloakify-starter
-cd keycloakify-starter
-yarn install # Or use an other package manager, just be sure to delete the yarn.lock if you use another package manager.
+git clone <your-repo-url>
+cd keycloakify-shadcn
 ```
 
-# Testing the theme locally
+2. Install dependencies:
+```bash
+npm install
+```
 
-[Documentation](https://docs.keycloakify.dev/testing-your-theme)
+3. Start the development environment:
+```bash
+# Start Storybook for component development
+npm run storybook
 
-# How to customize the theme
+# Or start the Vite dev server
+npm run dev
+```
 
-[Documentation](https://docs.keycloakify.dev/customization-strategies)
-
-# Building the theme
-
-You need to have [Maven](https://maven.apache.org/) installed to build the theme (Maven >= 3.1.1, Java >= 7).  
-The `mvn` command must be in the $PATH.
-
-- On macOS: `brew install maven`
-- On Debian/Ubuntu: `sudo apt-get install maven`
-- On Windows: `choco install openjdk` and `choco install maven` (Or download from [here](https://maven.apache.org/download.cgi))
-
+4. Build the theme:
 ```bash
 npm run build-keycloak-theme
 ```
 
-Note that by default Keycloakify generates multiple .jar files for different versions of Keycloak.  
-You can customize this behavior, see documentation [here](https://docs.keycloakify.dev/targeting-specific-keycloak-versions).
+## Docker Deployment
 
-# Initializing the account theme
+The project includes Docker configuration for easy deployment:
 
+1. Build and start the containers:
 ```bash
-npx keycloakify initialize-account-theme
+docker compose up -d
 ```
 
-# Initializing the email theme
+This will start:
+- Keycloak server with the custom theme (accessible at http://localhost:8090)
+- PostgreSQL database
+- Initial realm configuration
 
-```bash
-npx keycloakify initialize-email-theme
-```
+Default admin credentials:
+- Username: admin
+- Password: admin
 
-# GitHub Actions
+## Development
 
-The starter comes with a generic GitHub Actions workflow that builds the theme and publishes
-the jars [as GitHub releases artifacts](https://github.com/keycloakify/keycloakify-starter/releases/tag/v10.0.0).  
-To release a new version **just update the `package.json` version and push**.
+### Project Structure
 
-To enable the workflow go to your fork of this repository on GitHub then navigate to:
-`Settings` > `Actions` > `Workflow permissions`, select `Read and write permissions`.
+- `/src/login/` - Theme components and pages
+- `/src/login/pages/` - Individual page implementations
+- `/config/` - Keycloak realm configuration
+- `/.github/workflows/` - CI/CD pipelines
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build the project
+- `npm run build-keycloak-theme` - Build the Keycloak theme
+- `npm run storybook` - Start Storybook for component development
+- `npm run format` - Format code with Prettier
+
+### Creating New Pages
+
+1. Create a new page component in `/src/login/pages/`
+2. Add the page to the switch statement in `KcPage.tsx`
+3. Create a corresponding story file for Storybook testing
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
