@@ -4,8 +4,8 @@ import { createKcPageStory } from "../KcPageStory";
 const { KcPageStory } = createKcPageStory({ pageId: "terms.ftl" });
 
 const meta = {
-    title: "login/terms.ftl",
-    component: KcPageStory
+  title: "login/terms.ftl",
+  component: KcPageStory
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -13,62 +13,62 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                "x-keycloakify": {
-                    messages: {
-                        termsText: "<p>My terms in <strong>English</strong></p>"
-                    }
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        "x-keycloakify": {
+          messages: {
+            termsText: "<p>My terms in <strong>English</strong></p>"
+          }
+        }
+      }}
+    />
+  )
 };
 
 export const French: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                locale: {
-                    currentLanguageTag: "fr"
-                },
-                "x-keycloakify": {
-                    // cSpell: disable
-                    messages: {
-                        termsText: "<p>Mes terme en <strong>Français</strong></p>"
-                    }
-                    // cSpell: enable
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        locale: {
+          currentLanguageTag: "fr"
+        },
+        "x-keycloakify": {
+          // cSpell: disable
+          messages: {
+            termsText: "<p>Mes terme en <strong>Français</strong></p>"
+          }
+          // cSpell: enable
+        }
+      }}
+    />
+  )
 };
 
 export const Spanish: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                locale: {
-                    currentLanguageTag: "es"
-                },
-                "x-keycloakify": {
-                    messages: {
-                        termsText: "<p>Mis términos en <strong>Español</strong></p>"
-                    }
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        locale: {
+          currentLanguageTag: "es"
+        },
+        "x-keycloakify": {
+          messages: {
+            termsText: "<p>Mis términos en <strong>Español</strong></p>"
+          }
+        }
+      }}
+    />
+  )
 };
 
 export const LongMessage: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                "x-keycloakify": {
-                    messages: {
-                        termsText: `
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        "x-keycloakify": {
+          messages: {
+            termsText: `
                             <p>These are the terms and conditions. Please read them carefully.</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
                             <p>Cras vehicula diam vel metus faucibus, at scelerisque lacus pretium. Donec ac consectetur justo. Morbi in sollicitudin nulla.</p>
@@ -79,9 +79,9 @@ export const LongMessage: Story = {
                             <p>Nunc pulvinar imperdiet facilisis. Curabitur ultricies dictum lectus, nec consectetur metus fringilla id.</p>
                             <p><strong>Please accept the terms to proceed.</strong></p>
                         `
-                    }
-                }
-            }}
-        />
-    )
+          }
+        }
+      }}
+    />
+  )
 };

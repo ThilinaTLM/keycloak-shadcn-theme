@@ -4,8 +4,8 @@ import { createKcPageStory } from "../KcPageStory";
 const { KcPageStory } = createKcPageStory({ pageId: "code.ftl" });
 
 const meta = {
-    title: "login/code.ftl",
-    component: KcPageStory
+  title: "login/code.ftl",
+  component: KcPageStory
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -13,44 +13,44 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: () => <KcPageStory />
+  render: () => <KcPageStory />
 };
 export const WithErrorCode: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                code: {
-                    success: false,
-                    error: "Failed to generate code"
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        code: {
+          success: false,
+          error: "Failed to generate code"
+        }
+      }}
+    />
+  )
 };
 export const WithFrenchLanguage: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                locale: {
-                    currentLanguageTag: "fr"
-                },
-                code: {
-                    success: true,
-                    code: "XYZ789"
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        locale: {
+          currentLanguageTag: "fr"
+        },
+        code: {
+          success: true,
+          code: "XYZ789"
+        }
+      }}
+    />
+  )
 };
 export const WithHtmlErrorMessage: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                code: {
-                    success: false,
-                    error: "Something went wrong. <a href='https://example.com'>Try again</a>"
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        code: {
+          success: false,
+          error: "Something went wrong. <a href='https://example.com'>Try again</a>"
+        }
+      }}
+    />
+  )
 };
