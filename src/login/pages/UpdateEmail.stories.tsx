@@ -4,8 +4,8 @@ import { createKcPageStory } from "../KcPageStory";
 const { KcPageStory } = createKcPageStory({ pageId: "update-email.ftl" });
 
 const meta = {
-    title: "login/update-email.ftl",
-    component: KcPageStory
+  title: "login/update-email.ftl",
+  component: KcPageStory
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -13,7 +13,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: () => <KcPageStory />
+  render: () => <KcPageStory />
 };
 
 /**
@@ -23,17 +23,17 @@ export const Default: Story = {
  * - Key Aspect: Ensures the "Cancel" button is visible and functional during app-initiated actions.
  */
 export const WithAppInitiatedAction: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                url: {
-                    loginAction: "/mock-login-action"
-                },
-                messagesPerField: {
-                    exists: () => false
-                },
-                isAppInitiatedAction: true
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        url: {
+          loginAction: "/mock-login-action"
+        },
+        messagesPerField: {
+          exists: () => false
+        },
+        isAppInitiatedAction: true
+      }}
+    />
+  )
 };

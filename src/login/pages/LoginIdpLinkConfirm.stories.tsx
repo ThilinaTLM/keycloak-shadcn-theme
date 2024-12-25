@@ -3,17 +3,17 @@ import { createKcPageStory } from "../KcPageStory";
 
 // Mock kcContext to avoid the TS2304 error
 const mockKcContext = {
-    url: {
-        loginAction: "/login-action"
-    },
-    idpAlias: "mockIdpAlias"
+  url: {
+    loginAction: "/login-action"
+  },
+  idpAlias: "mockIdpAlias"
 };
 
 const { KcPageStory } = createKcPageStory({ pageId: "login-idp-link-confirm.ftl" });
 
 const meta = {
-    title: "login/login-idp-link-confirm.ftl",
-    component: KcPageStory
+  title: "login/login-idp-link-confirm.ftl",
+  component: KcPageStory
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -27,7 +27,7 @@ type Story = StoryObj<typeof meta>;
  * - Key Aspect: Ensures the default behavior of the component with standard values for kcContext.
  */
 export const Default: Story = {
-    render: () => <KcPageStory kcContext={mockKcContext} />
+  render: () => <KcPageStory kcContext={mockKcContext} />
 };
 
 /**
@@ -37,18 +37,18 @@ export const Default: Story = {
  * - Key Aspect: Verifies that the component can display error messages during form submission failure, ensuring proper error handling.
  */
 export const WithFormSubmissionError: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                ...mockKcContext,
-                url: {
-                    loginAction: "/error"
-                },
-                message: {
-                    type: "error",
-                    summary: "An error occurred during form submission."
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        ...mockKcContext,
+        url: {
+          loginAction: "/error"
+        },
+        message: {
+          type: "error",
+          summary: "An error occurred during form submission."
+        }
+      }}
+    />
+  )
 };

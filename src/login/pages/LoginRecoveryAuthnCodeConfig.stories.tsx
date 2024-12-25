@@ -4,8 +4,8 @@ import { createKcPageStory } from "../KcPageStory";
 const { KcPageStory } = createKcPageStory({ pageId: "login-recovery-authn-code-config.ftl" });
 
 const meta = {
-    title: "login/login-recovery-authn-code-config.ftl",
-    component: KcPageStory
+  title: "login/login-recovery-authn-code-config.ftl",
+  component: KcPageStory
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -13,7 +13,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: () => <KcPageStory />
+  render: () => <KcPageStory />
 };
 
 /**
@@ -23,17 +23,17 @@ export const Default: Story = {
  * - Key Aspect: Ensures that error messages are properly displayed when recovery code generation fails.
  */
 export const WithErrorDuringCodeGeneration: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                url: {
-                    loginAction: "/mock-login-action"
-                },
-                message: {
-                    summary: "An error occurred during recovery code generation. Please try again.",
-                    type: "error"
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        url: {
+          loginAction: "/mock-login-action"
+        },
+        message: {
+          summary: "An error occurred during recovery code generation. Please try again.",
+          type: "error"
+        }
+      }}
+    />
+  )
 };

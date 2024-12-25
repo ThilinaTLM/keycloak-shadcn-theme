@@ -4,8 +4,8 @@ import { createKcPageStory } from "../KcPageStory";
 const { KcPageStory } = createKcPageStory({ pageId: "login-otp.ftl" });
 
 const meta = {
-    title: "login/login-otp.ftl",
-    component: KcPageStory
+  title: "login/login-otp.ftl",
+  component: KcPageStory
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -13,7 +13,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: () => <KcPageStory />
+  render: () => <KcPageStory />
 };
 
 /**
@@ -23,29 +23,29 @@ export const Default: Story = {
  * - Key Aspect: Ensures that multiple OTP credentials are listed and selectable, and the correct credential is selected by default.
  */
 export const MultipleOtpCredentials: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                otpLogin: {
-                    userOtpCredentials: [
-                        { id: "credential1", userLabel: "Device 1" },
-                        { id: "credential2", userLabel: "Device 2" },
-                        { id: "credential2", userLabel: "Device 3" },
-                        { id: "credential2", userLabel: "Device 4" },
-                        { id: "credential2", userLabel: "Device 5" },
-                        { id: "credential2", userLabel: "Device 6" }
-                    ],
-                    selectedCredentialId: "credential1"
-                },
-                url: {
-                    loginAction: "/login-action"
-                },
-                messagesPerField: {
-                    existsError: () => false
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        otpLogin: {
+          userOtpCredentials: [
+            { id: "credential1", userLabel: "Device 1" },
+            { id: "credential2", userLabel: "Device 2" },
+            { id: "credential2", userLabel: "Device 3" },
+            { id: "credential2", userLabel: "Device 4" },
+            { id: "credential2", userLabel: "Device 5" },
+            { id: "credential2", userLabel: "Device 6" }
+          ],
+          selectedCredentialId: "credential1"
+        },
+        url: {
+          loginAction: "/login-action"
+        },
+        messagesPerField: {
+          existsError: () => false
+        }
+      }}
+    />
+  )
 };
 
 /**
@@ -55,22 +55,22 @@ export const MultipleOtpCredentials: Story = {
  * - Key Aspect: Ensures that the OTP input displays error messages correctly and the error is visible.
  */
 export const WithOtpError: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                otpLogin: {
-                    userOtpCredentials: []
-                },
-                url: {
-                    loginAction: "/login-action"
-                },
-                messagesPerField: {
-                    existsError: (field: string) => field === "totp",
-                    get: () => "Invalid OTP code"
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        otpLogin: {
+          userOtpCredentials: []
+        },
+        url: {
+          loginAction: "/login-action"
+        },
+        messagesPerField: {
+          existsError: (field: string) => field === "totp",
+          get: () => "Invalid OTP code"
+        }
+      }}
+    />
+  )
 };
 
 /**
@@ -80,21 +80,21 @@ export const WithOtpError: Story = {
  * - Key Aspect: Ensures that the component handles cases where there are no user OTP credentials, and the user is only prompted for the OTP code.
  */
 export const NoOtpCredentials: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                otpLogin: {
-                    userOtpCredentials: []
-                },
-                url: {
-                    loginAction: "/login-action"
-                },
-                messagesPerField: {
-                    existsError: () => false
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        otpLogin: {
+          userOtpCredentials: []
+        },
+        url: {
+          loginAction: "/login-action"
+        },
+        messagesPerField: {
+          existsError: () => false
+        }
+      }}
+    />
+  )
 };
 
 /**
@@ -104,24 +104,24 @@ export const NoOtpCredentials: Story = {
  * - Key Aspect: Ensures that the component can handle both multiple OTP credentials and display an error message simultaneously.
  */
 export const WithErrorAndMultipleOtpCredentials: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                otpLogin: {
-                    userOtpCredentials: [
-                        { id: "credential1", userLabel: "Device 1" },
-                        { id: "credential2", userLabel: "Device 2" }
-                    ],
-                    selectedCredentialId: "credential1"
-                },
-                url: {
-                    loginAction: "/login-action"
-                },
-                messagesPerField: {
-                    existsError: (field: string) => field === "totp",
-                    get: () => "Invalid OTP code"
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        otpLogin: {
+          userOtpCredentials: [
+            { id: "credential1", userLabel: "Device 1" },
+            { id: "credential2", userLabel: "Device 2" }
+          ],
+          selectedCredentialId: "credential1"
+        },
+        url: {
+          loginAction: "/login-action"
+        },
+        messagesPerField: {
+          existsError: (field: string) => field === "totp",
+          get: () => "Invalid OTP code"
+        }
+      }}
+    />
+  )
 };

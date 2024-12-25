@@ -4,8 +4,8 @@ import { createKcPageStory } from "../KcPageStory";
 const { KcPageStory } = createKcPageStory({ pageId: "webauthn-error.ftl" });
 
 const meta = {
-    title: "login/webauthn-error.ftl",
-    component: KcPageStory
+  title: "login/webauthn-error.ftl",
+  component: KcPageStory
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -13,7 +13,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: () => <KcPageStory />
+  render: () => <KcPageStory />
 };
 
 /**
@@ -23,20 +23,20 @@ export const Default: Story = {
  * - Key Aspect: Ensures the retry button functionality is visible and the user can retry authentication.
  */
 export const WithRetryAvailable: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                url: {
-                    loginAction: "/mock-login-action"
-                },
-                isAppInitiatedAction: false,
-                message: {
-                    summary: "WebAuthn authentication failed. Please try again.",
-                    type: "error"
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        url: {
+          loginAction: "/mock-login-action"
+        },
+        isAppInitiatedAction: false,
+        message: {
+          summary: "WebAuthn authentication failed. Please try again.",
+          type: "error"
+        }
+      }}
+    />
+  )
 };
 
 /**
@@ -46,20 +46,20 @@ export const WithRetryAvailable: Story = {
  * - Key Aspect: Ensures the form renders correctly with both "Try Again" and "Cancel" options.
  */
 export const WithAppInitiatedAction: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                url: {
-                    loginAction: "/mock-login-action"
-                },
-                isAppInitiatedAction: true,
-                message: {
-                    summary: "WebAuthn authentication failed. You can try again or cancel.",
-                    type: "error"
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        url: {
+          loginAction: "/mock-login-action"
+        },
+        isAppInitiatedAction: true,
+        message: {
+          summary: "WebAuthn authentication failed. You can try again or cancel.",
+          type: "error"
+        }
+      }}
+    />
+  )
 };
 
 /**
@@ -69,18 +69,18 @@ export const WithAppInitiatedAction: Story = {
  * - Key Aspect: Ensures the retry mechanism works properly when JavaScript is disabled or unavailable.
  */
 export const WithJavaScriptDisabled: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                url: {
-                    loginAction: "/mock-login-action"
-                },
-                isAppInitiatedAction: false,
-                message: {
-                    summary: "JavaScript is disabled or not working. Please retry manually.",
-                    type: "warning"
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        url: {
+          loginAction: "/mock-login-action"
+        },
+        isAppInitiatedAction: false,
+        message: {
+          summary: "JavaScript is disabled or not working. Please retry manually.",
+          type: "warning"
+        }
+      }}
+    />
+  )
 };

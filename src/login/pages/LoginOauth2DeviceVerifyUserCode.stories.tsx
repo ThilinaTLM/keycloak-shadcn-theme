@@ -4,8 +4,8 @@ import { createKcPageStory } from "../KcPageStory";
 const { KcPageStory } = createKcPageStory({ pageId: "login-oauth2-device-verify-user-code.ftl" });
 
 const meta = {
-    title: "login/login-oauth2-device-verify-user-code.ftl",
-    component: KcPageStory
+  title: "login/login-oauth2-device-verify-user-code.ftl",
+  component: KcPageStory
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -13,7 +13,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: () => <KcPageStory />
+  render: () => <KcPageStory />
 };
 
 /**
@@ -23,19 +23,19 @@ export const Default: Story = {
  * - Key Aspect: Ensures the error message is properly shown when the user enters an invalid code.
  */
 export const WithErrorMessage: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                url: {
-                    oauth2DeviceVerificationAction: "/mock-oauth2-device-verification"
-                },
-                message: {
-                    summary: "The user code you entered is invalid. Please try again.",
-                    type: "error"
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        url: {
+          oauth2DeviceVerificationAction: "/mock-oauth2-device-verification"
+        },
+        message: {
+          summary: "The user code you entered is invalid. Please try again.",
+          type: "error"
+        }
+      }}
+    />
+  )
 };
 
 /**
@@ -45,17 +45,17 @@ export const WithErrorMessage: Story = {
  * - Key Aspect: Ensures the form displays validation errors when the field is left empty.
  */
 export const WithEmptyInputField: Story = {
-    render: () => (
-        <KcPageStory
-            kcContext={{
-                url: {
-                    oauth2DeviceVerificationAction: "/mock-oauth2-device-verification"
-                },
-                message: {
-                    summary: "User code cannot be empty. Please enter a valid code.",
-                    type: "error"
-                }
-            }}
-        />
-    )
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        url: {
+          oauth2DeviceVerificationAction: "/mock-oauth2-device-verification"
+        },
+        message: {
+          summary: "User code cannot be empty. Please enter a valid code.",
+          type: "error"
+        }
+      }}
+    />
+  )
 };

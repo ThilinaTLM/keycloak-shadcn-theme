@@ -15,34 +15,34 @@ export default typescriptEslint.config(
   eslintConfigPrettier,
   ...storybook.configs["flat/recommended"],
   {
-    ignores: ["dist/**", "public/**"],
+    ignores: ["dist/**", "public/**"]
   },
   {
     plugins: {
       "react-refresh": reactRefresh,
-      "react-hooks": reactHooks,
+      "react-hooks": reactHooks
     },
     languageOptions: {
       globals: {
-        ...globals.browser,
-      },
+        ...globals.browser
+      }
     },
     settings: {
       react: {
-        version: "detect",
-      },
+        version: "detect"
+      }
     },
     rules: {
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
       "react-hooks/exhaustive-deps": "off",
       "@typescript-eslint/no-redeclare": "off",
-      "no-labels": "off",
-    },
+      "no-labels": "off"
+    }
   },
   {
     files: ["**/*.stories.*"],
     rules: {
-      "import/no-anonymous-default-export": "off",
-    },
-  },
+      "import/no-anonymous-default-export": "off"
+    }
+  }
 );
