@@ -1,0 +1,86 @@
+services:
+  postgres:
+    image: "postgres:17"
+    environment:
+      - "POSTGRES_DB=keycloak"
+      - "POSTGRES_PASSWORD=root"
+      - "POSTGRES_USER=root"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - keycloak-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d keycloak"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    command: |
+      bash -c '
+      set -e
+      docker-entrypoint.sh postgres &
+      until pg_isready -U root -d postgres; do
+        echo "Waiting for PostgreSQL to be ready..."
+        sleep 1
+      done
+      psql -v ON_ERROR_STOP=0 -U root -d keycloak <<-EOSQL
+        CREATE SCHEMA IF NOT EXISTS keycloak;
+      EOSQL
+      wait $!
+      '
+
+  keycloak:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - KC_HEALTH_ENABLED=true
+      - KC_HTTP_ENABLED=true
+      - KC_HOSTNAME_STRICT=false
+      - KC_HEALTH_ENABLED=true
+      - KC_DB=postgres
+      - KC_DB_URL=jdbc:postgresql://postgres:5432/keycloak
+      - KC_DB_SCHEMA=keycloak
+      - KC_DB_USERNAME=root
+      - KC_DB_PASSWORD=root
+      - KC_BOOTSTRAP_ADMIN_USERNAME=admin
+      - KC_BOOTSTRAP_ADMIN_PASSWORD=admin
+    ports:
+      - "8090:8080"
+    depends_on:
+      - postgres
+    networks:
+      - keycloak-network
+
+  keycloak-export:
+    image: quay.io/keycloak/keycloak:26.0
+    profiles:
+      - debug
+    environment:
+      - KC_HEALTH_ENABLED=true
+      - KC_DB=postgres
+      - KC_DB_URL=jdbc:postgresql://postgres:5432/keycloak
+      - KC_DB_SCHEMA=keycloak
+      - KC_DB_USERNAME=root
+      - KC_DB_PASSWORD=root
+      - KC_BOOTSTRAP_ADMIN_USERNAME=admin
+      - KC_BOOTSTRAP_ADMIN_PASSWORD=admin
+    volumes:
+      - ./config:/opt/keycloak/data/export
+    depends_on:
+      - postgres
+    networks:
+      - keycloak-network
+    command:
+      - export
+      - --file=/opt/keycloak/data/export/app-realm.json
+      - --realm=app
+
+networks:
+  keycloak-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
