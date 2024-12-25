@@ -2,20 +2,17 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { InfoIcon } from "lucide-react";
 
 export default function Info(props: PageProps<Extract<KcContext, { pageId: "info.ftl" }>, I18n>) {
-  const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
-
+  const { kcContext, i18n, Template } = props;
   const { advancedMsgStr, msg } = i18n;
-
   const { messageHeader, message, requiredActions, skipLink, pageRedirectUri, actionUri, client } = kcContext;
 
   return (
     <Template
-      kcContext={kcContext}
-      i18n={i18n}
-      doUseDefaultCss={doUseDefaultCss}
-      classes={classes}
+      {...props}
       displayMessage={false}
       headerNode={
         <span
@@ -25,55 +22,50 @@ export default function Info(props: PageProps<Extract<KcContext, { pageId: "info
         />
       }
     >
-      <div id="kc-info-message">
-        <p
-          className="instruction"
-          dangerouslySetInnerHTML={{
-            __html: kcSanitize(
-              (() => {
-                let html = message.summary;
+      <div className="w-full max-w-md">
+        <div className="py-2 px-4 sm:rounded-lg sm:px-6">
+          <Alert>
+            <InfoIcon className="h-4 w-4" />
+            <AlertDescription
+              className="space-y-4"
+              dangerouslySetInnerHTML={{
+                __html: kcSanitize(
+                  (() => {
+                    let html = message.summary;
 
-                if (requiredActions) {
-                  html += "<b>";
+                    if (requiredActions) {
+                      html += " <strong class='font-medium'>";
+                      html += requiredActions.map(requiredAction => advancedMsgStr(`requiredAction.${requiredAction}`)).join(", ");
+                      html += "</strong>";
+                    }
 
-                  html += requiredActions.map(requiredAction => advancedMsgStr(`requiredAction.${requiredAction}`)).join(", ");
+                    return html;
+                  })()
+                )
+              }}
+            />
+          </Alert>
 
-                  html += "</b>";
-                }
-
-                return html;
-              })()
-            )
-          }}
-        />
-        {(() => {
-          if (skipLink) {
-            return null;
-          }
-
-          if (pageRedirectUri) {
-            return (
-              <p>
-                <a href={pageRedirectUri}>{msg("backToApplication")}</a>
-              </p>
-            );
-          }
-          if (actionUri) {
-            return (
-              <p>
-                <a href={actionUri}>{msg("proceedWithAction")}</a>
-              </p>
-            );
-          }
-
-          if (client.baseUrl) {
-            return (
-              <p>
-                <a href={client.baseUrl}>{msg("backToApplication")}</a>
-              </p>
-            );
-          }
-        })()}
+          {!skipLink && (
+            <div className="mt-6 text-center">
+              {pageRedirectUri && (
+                <a href={pageRedirectUri} className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                  {msg("backToApplication")}
+                </a>
+              )}
+              {actionUri && (
+                <a href={actionUri} className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                  {msg("proceedWithAction")}
+                </a>
+              )}
+              {client.baseUrl && !pageRedirectUri && !actionUri && (
+                <a href={client.baseUrl} className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                  {msg("backToApplication")}
+                </a>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </Template>
   );

@@ -1,28 +1,39 @@
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Info } from "lucide-react";
 
 export default function LoginPageExpired(props: PageProps<Extract<KcContext, { pageId: "login-page-expired.ftl" }>, I18n>) {
-  const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
+    const { kcContext, i18n, Template } = props;
+    const { url } = kcContext;
+    const { msg } = i18n;
 
-  const { url } = kcContext;
-
-  const { msg } = i18n;
-
-  return (
-    <Template kcContext={kcContext} i18n={i18n} doUseDefaultCss={doUseDefaultCss} classes={classes} headerNode={msg("pageExpiredTitle")}>
-      <p id="instruction1" className="instruction">
-        {msg("pageExpiredMsg1")}
-        <a id="loginRestartLink" href={url.loginRestartFlowUrl}>
-          {msg("doClickHere")}
-        </a>{" "}
-        .<br />
-        {msg("pageExpiredMsg2")}{" "}
-        <a id="loginContinueLink" href={url.loginAction}>
-          {msg("doClickHere")}
-        </a>{" "}
-        .
-      </p>
-    </Template>
-  );
+    return (
+      <Template {...props} displayMessage={false} headerNode={msg("pageExpiredTitle")}>
+          <div className="w-full max-w-md">
+              <div className="py-2 px-4 sm:rounded-lg sm:px-6">
+                  <Alert>
+                      <Info className="h-4 w-4" />
+                      <AlertDescription className="space-y-4">
+                          <p>
+                              {msg("pageExpiredMsg1")}{" "}
+                              <a href={url.loginRestartFlowUrl} id="loginRestartLink" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                  {msg("doClickHere")}
+                              </a>
+                              .
+                          </p>
+                          <p>
+                              {msg("pageExpiredMsg2")}{" "}
+                              <a href={url.loginAction} id="loginContinueLink" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                  {msg("doClickHere")}
+                              </a>
+                              .
+                          </p>
+                      </AlertDescription>
+                  </Alert>
+              </div>
+          </div>
+      </Template>
+    );
 }
