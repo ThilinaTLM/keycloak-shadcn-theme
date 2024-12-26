@@ -15,11 +15,7 @@ export default typescriptEslint.config(
   eslintConfigPrettier,
   ...storybook.configs["flat/recommended"],
   {
-    ignores: [
-      "dist/**",
-      "public/**",
-      "src/components/ui/**"
-    ]
+    ignores: ["dist/**", "public/**", "src/components/ui/**"]
   },
   {
     plugins: {
