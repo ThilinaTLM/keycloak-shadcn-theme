@@ -31,17 +31,20 @@ A modern and customizable Keycloak theme built with [Keycloakify](https://www.ke
 ## Quick Start
 
 1. Clone the repository:
+
 ```bash
 git clone <your-repo-url>
 cd keycloakify-shadcn
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Start the development environment:
+
 ```bash
 # Start Storybook for component development
 npm run storybook
@@ -51,6 +54,7 @@ npm run dev
 ```
 
 4. Build the theme:
+
 ```bash
 npm run build-keycloak-theme
 ```
@@ -60,16 +64,19 @@ npm run build-keycloak-theme
 The project includes Docker configuration for easy deployment:
 
 1. Build and start the containers:
+
 ```bash
 docker compose up -d
 ```
 
 This will start:
+
 - Keycloak server with the custom theme (accessible at http://localhost:8090)
 - PostgreSQL database
 - Initial realm configuration
 
 Default admin credentials:
+
 - Username: admin
 - Password: admin
 
@@ -103,4 +110,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
