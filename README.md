@@ -1,5 +1,8 @@
 # Shadcn Keycloak Theme
 
+[![Code Quality](https://github.com/ThilinaTLM/keycloakify-shadcn/actions/workflows/code-quality.yml/badge.svg)](https://github.com/ThilinaTLM/keycloakify-shadcn/actions/workflows/code-quality.yml)
+[![Release](https://github.com/ThilinaTLM/keycloakify-shadcn/actions/workflows/release.yml/badge.svg)](https://github.com/ThilinaTLM/keycloakify-shadcn/actions/workflows/release.yml)
+
 A modern and customizable Keycloak theme built with [Keycloakify](https://www.keycloakify.dev/) and [shadcn/ui](https://ui.shadcn.com/). This theme provides a beautiful, responsive, and accessible user interface for Keycloak login pages.
 
 ## Features
