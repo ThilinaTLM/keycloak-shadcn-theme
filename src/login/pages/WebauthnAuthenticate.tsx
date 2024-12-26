@@ -56,7 +56,12 @@ export default function WebauthnAuthenticate(props: PageProps<Extract<KcContext,
             <>
               <form id="authn_select" className={kcClsx("kcFormClass")}>
                 {authenticators.authenticators.map(authenticator => (
-                  <input type="hidden" name="authn_use_chk" value={authenticator.credentialId} />
+                  <input 
+                    key={authenticator.credentialId}
+                    type="hidden" 
+                    name="authn_use_chk" 
+                    value={authenticator.credentialId} 
+                  />
                 ))}
               </form>
 
@@ -72,7 +77,7 @@ export default function WebauthnAuthenticate(props: PageProps<Extract<KcContext,
                           <i
                             className={clsx(
                               (() => {
-                                const className = kcClsx(authenticator.transports.iconClass as any);
+                                const className = kcClsx(authenticator.transports.iconClass as never);
                                 if (className === authenticator.transports.iconClass) {
                                   return kcClsx("kcWebAuthnDefaultIcon");
                                 }
