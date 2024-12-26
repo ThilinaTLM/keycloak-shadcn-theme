@@ -54,7 +54,7 @@ export default function LoginPasskeysConditionalAuthenticate(
         <input type="hidden" id="error" name="error" />
       </form>
 
-      <div className={kcClsx("kcFormGroupClass")} no-bottom-margin="true" style={{ marginBottom: 0 }}>
+      <div className={kcClsx("kcFormGroupClass")} style={{ marginBottom: 0 }}>
         {authenticators !== undefined && Object.keys(authenticators).length !== 0 && (
           <>
             <form id="authn_select" className={kcClsx("kcFormClass")}>
@@ -73,7 +73,7 @@ export default function LoginPasskeysConditionalAuthenticate(
                       <i
                         className={clsx(
                           (() => {
-                            const className = kcClsx(authenticator.transports.iconClass as any);
+                            const className = kcClsx(authenticator.transports.iconClass as never);
                             if (className === authenticator.transports.iconClass) {
                               return kcClsx("kcWebAuthnDefaultIcon");
                             }
@@ -121,9 +121,10 @@ export default function LoginPasskeysConditionalAuthenticate(
                 style={{ display: "none" }}
                 onSubmit={event => {
                   try {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-expect-error
                     event.target.login.disabled = true;
-                  } catch {}
+                  } catch { /* empty */ }
 
                   return true;
                 }}
