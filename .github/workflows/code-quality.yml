@@ -27,4 +27,7 @@ jobs:
         run: npx prettier --check .
       
       - name: Check code linting
-        run: npx eslint . --max-warnings 0 
+        run: npx eslint . --max-warnings 0
+        
+      - name: Check build
+        run: npm run build 
