@@ -124,7 +124,9 @@ export default function LoginPasskeysConditionalAuthenticate(
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-expect-error
                     event.target.login.disabled = true;
-                  } catch { /* empty */ }
+                  } catch {
+                    /* empty */
+                  }
 
                   return true;
                 }}

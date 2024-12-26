@@ -77,9 +77,9 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
             onClick={() => {
               window.history.back();
             }}
-            className='p-0 h-fit w-fit'
+            className="p-0 h-fit w-fit"
           >
-            <CircleChevronLeft style={{width: '27px', height: '27px'}} />
+            <CircleChevronLeft style={{ width: "27px", height: "27px" }} />
           </Button>
         </div>
       </div>

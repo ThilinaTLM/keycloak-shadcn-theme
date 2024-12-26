@@ -11,7 +11,7 @@ export default defineConfig({
       accountThemeImplementation: "none",
       keycloakVersionTargets: {
         "all-other-versions": "shadcn-theme.jar",
-        "22-to-25": false,
+        "22-to-25": false
       },
       themeName: "shadcn-theme",
       themeVersion: "1.0.0"
