@@ -1,60 +1,50 @@
 import { useState } from "react";
-import { clsx } from "keycloakify/tools/clsx";
-import { getKcClsx } from "keycloakify/login/lib/kcClsx";
+import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Label } from "@/components/ui/label";
 
 export default function LoginUsername(props: PageProps<Extract<KcContext, { pageId: "login-username.ftl" }>, I18n>) {
-  const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
-
-  const { kcClsx } = getKcClsx({
-    doUseDefaultCss,
-    classes
-  });
-
+  const { kcContext, i18n, Template } = props;
   const { social, realm, url, usernameHidden, login, registrationDisabled, messagesPerField } = kcContext;
-
   const { msg, msgStr } = i18n;
-
   const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
 
   return (
     <Template
-      kcContext={kcContext}
-      i18n={i18n}
-      doUseDefaultCss={doUseDefaultCss}
-      classes={classes}
+      {...props}
       displayMessage={!messagesPerField.existsError("username")}
       displayInfo={realm.password && realm.registrationAllowed && !registrationDisabled}
       infoNode={
-        <div id="kc-registration">
-          <span>
-            {msg("noAccount")}
-            <a tabIndex={6} href={url.registrationUrl}>
-              {msg("doRegister")}
-            </a>
-          </span>
-        </div>
+        <span>
+          {msg("noAccount")}{" "}
+          <a className="text-blue-600 hover:underline" tabIndex={6} href={url.registrationUrl}>
+            {msg("doRegister")}
+          </a>
+        </span>
       }
       headerNode={msg("doLogIn")}
       socialProvidersNode={
         <>
           {realm.password && social?.providers !== undefined && social.providers.length !== 0 && (
-            <div id="kc-social-providers" className={kcClsx("kcFormSocialAccountSectionClass")}>
-              <hr />
-              <h2>{msg("identity-provider-login-label")}</h2>
-              <ul className={kcClsx("kcFormSocialAccountListClass", social.providers.length > 3 && "kcFormSocialAccountListGridClass")}>
-                {social.providers.map((...[p, , providers]) => (
+            <div id="kc-social-providers" className="mt-6">
+              <hr className="my-6" />
+              <h2 className="text-xl font-semibold mb-4">{msg("identity-provider-login-label")}</h2>
+              <ul className={`grid ${social.providers.length > 3 ? "grid-cols-2 gap-4" : "grid-cols-1 gap-2"}`}>
+                {social.providers.map(p => (
                   <li key={p.alias}>
                     <a
                       id={`social-${p.alias}`}
-                      className={kcClsx("kcFormSocialAccountListButtonClass", providers.length > 3 && "kcFormSocialAccountGridItem")}
-                      type="button"
+                      className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
                       href={p.loginUrl}
                     >
-                      {p.iconClasses && <i className={clsx(kcClsx("kcCommonLogoIdP"), p.iconClasses)} aria-hidden="true"></i>}
-                      <span className={clsx(kcClsx("kcFormSocialAccountNameClass"), p.iconClasses && "kc-social-icon-text")}>{p.displayName}</span>
+                      {p.iconClasses && <i className={`mr-2 ${p.iconClasses}`} aria-hidden="true"></i>}
+                      <span dangerouslySetInnerHTML={{ __html: kcSanitize(p.displayName) }}></span>
                     </a>
                   </li>
                 ))}
@@ -64,8 +54,8 @@ export default function LoginUsername(props: PageProps<Extract<KcContext, { page
         </>
       }
     >
-      <div id="kc-form">
-        <div id="kc-form-wrapper">
+      <div className="w-full max-w-md">
+        <div className="py-2 px-4 sm:rounded-lg sm:px-6">
           {realm.password && (
             <form
               id="kc-form-login"
@@ -75,54 +65,54 @@ export default function LoginUsername(props: PageProps<Extract<KcContext, { page
               }}
               action={url.loginAction}
               method="post"
+              className="space-y-6"
             >
               {!usernameHidden && (
-                <div className={kcClsx("kcFormGroupClass")}>
-                  <label htmlFor="username" className={kcClsx("kcLabelClass")}>
+                <div className="space-y-2">
+                  <Label htmlFor="username">
                     {!realm.loginWithEmailAllowed ? msg("username") : !realm.registrationEmailAsUsername ? msg("usernameOrEmail") : msg("email")}
-                  </label>
-                  <input
+                  </Label>
+                  <Input
                     tabIndex={2}
                     id="username"
-                    className={kcClsx("kcInputClass")}
                     name="username"
                     defaultValue={login.username ?? ""}
                     type="text"
                     autoFocus
                     autoComplete="off"
+                    className="h-10"
                     aria-invalid={messagesPerField.existsError("username")}
                   />
                   {messagesPerField.existsError("username") && (
-                    <span id="input-error" className={kcClsx("kcInputErrorMessageClass")} aria-live="polite">
-                      {messagesPerField.getFirstError("username")}
-                    </span>
+                    <Alert variant="destructive">
+                      <AlertDescription
+                        id="input-error"
+                        aria-live="polite"
+                        dangerouslySetInnerHTML={{
+                          __html: kcSanitize(messagesPerField.getFirstError("username"))
+                        }}
+                      />
+                    </Alert>
                   )}
                 </div>
               )}
 
-              <div className={kcClsx("kcFormGroupClass", "kcFormSettingClass")}>
-                <div id="kc-form-options">
-                  {realm.rememberMe && !usernameHidden && (
-                    <div className="checkbox">
-                      <label>
-                        <input tabIndex={3} id="rememberMe" name="rememberMe" type="checkbox" defaultChecked={!!login.rememberMe} />{" "}
-                        {msg("rememberMe")}
-                      </label>
-                    </div>
-                  )}
-                </div>
-              </div>
+              <div className="space-y-4">
+                {realm.rememberMe && !usernameHidden && (
+                  <div className="flex items-center space-x-2">
+                    <Checkbox id="rememberMe" name="rememberMe" defaultChecked={!!login.rememberMe} tabIndex={3} />
+                    <Label
+                      htmlFor="rememberMe"
+                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    >
+                      {msg("rememberMe")}
+                    </Label>
+                  </div>
+                )}
 
-              <div id="kc-form-buttons" className={kcClsx("kcFormGroupClass")}>
-                <input
-                  tabIndex={4}
-                  disabled={isLoginButtonDisabled}
-                  className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
-                  name="login"
-                  id="kc-login"
-                  type="submit"
-                  value={msgStr("doLogIn")}
-                />
+                <Button type="submit" className="w-full" disabled={isLoginButtonDisabled} tabIndex={4}>
+                  {msgStr("doLogIn")}
+                </Button>
               </div>
             </form>
           )}
