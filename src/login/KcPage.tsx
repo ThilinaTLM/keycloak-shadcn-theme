@@ -16,6 +16,8 @@ import LogoutConfirm from "./pages/LogoutConfirm";
 import Register from "./pages/Register";
 import Error from "./pages/Error";
 import Info from "./pages/Info";
+import LoginUsername from "./pages/LoginUsername";
+import LoginPassword from "./pages/LoginPassword";
 
 const UserProfileFormFields = lazy(() => import("./UserProfileFormFields"));
 
@@ -38,13 +40,19 @@ export default function KcPage(props: { kcContext: KcContext }) {
                 doUseDefaultCss={true}
               />
             );
-          case "register.ftl":
+          case "login-username.ftl":
             return (
-              <Register
+              <LoginUsername
                 {...{ kcContext, i18n, classes }}
                 Template={Template}
-                UserProfileFormFields={UserProfileFormFields}
-                doMakeUserConfirmPassword={true}
+                doUseDefaultCss={true}
+              />
+            );
+          case "login-password.ftl":
+            return (
+              <LoginPassword
+                {...{ kcContext, i18n, classes }}
+                Template={Template}
                 doUseDefaultCss={true}
               />
             );
@@ -109,6 +117,16 @@ export default function KcPage(props: { kcContext: KcContext }) {
               <LogoutConfirm
                 {...{ kcContext, i18n, classes }}
                 Template={Template}
+                doUseDefaultCss={true}
+              />
+            );
+          case "register.ftl":
+            return (
+              <Register
+                {...{ kcContext, i18n, classes }}
+                Template={Template}
+                UserProfileFormFields={UserProfileFormFields}
+                doMakeUserConfirmPassword={true}
                 doUseDefaultCss={true}
               />
             );
