@@ -7,7 +7,7 @@ import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button.tsx";
-import { CircleChevronLeft } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
   const {
@@ -77,9 +77,9 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
             onClick={() => {
               window.history.back();
             }}
-            className="p-0 h-fit w-fit"
+            className="p-0 h-fit w-fit transition-all duration-200 hover:scale-110 hover:-translate-x-1"
           >
-            <CircleChevronLeft style={{ width: "27px", height: "27px" }} />
+            <ChevronLeft style={{ width: "27px", height: "27px" }} />
           </Button>
         </div>
       </div>
