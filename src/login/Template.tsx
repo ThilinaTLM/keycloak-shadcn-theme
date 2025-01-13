@@ -45,7 +45,17 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center py-12 sm:px-6 lg:px-8 bg-gray-100">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="text-center text-4xl font-extrabold text-gray-900 uppercase">{msg("loginTitleHtml", realm.displayNameHtml)}</h2>
+        <h2 className="text-center text-4xl font-extrabold text-gray-900 uppercase">
+          <img
+            src={`${import.meta.env.BASE_URL}logo.png`}
+            width={500}
+            onError={e => {
+              e.currentTarget.style.display = "none";
+              e.currentTarget.nextElementSibling?.removeAttribute("hidden");
+            }}
+          />
+          <div hidden>{msg("loginTitleHtml", realm.displayNameHtml)}</div>
+        </h2>
         {enabledLanguages.length > 1 && (
           <div className="fixed right-5 top-5">
             <Select
