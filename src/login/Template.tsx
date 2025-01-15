@@ -94,7 +94,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
         </div>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+      <div className="mt-5 mx-0 sm:mx-auto w-full max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-6">
           <h1 className="text-2xl font-normal text-gray-900 mb-6 text-center">{headerNode}</h1>
           {displayRequiredFields && (
