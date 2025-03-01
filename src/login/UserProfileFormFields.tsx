@@ -357,12 +357,12 @@ function SelectTag(props: InputFieldByTypeProps) {
 
   return (
     <Select
-      value={isMultiple ? undefined : (valueOrValues as string)}
+      value={isMultiple ? undefined : (valueOrValues as string) === "" ? "__placeholder__" : (valueOrValues as string)}
       onValueChange={value =>
         dispatchFormAction({
           action: "update",
           name: attribute.name,
-          valueOrValues: value
+          valueOrValues: value === "__placeholder__" ? "" : value
         })
       }
     >
@@ -370,7 +370,7 @@ function SelectTag(props: InputFieldByTypeProps) {
         <SelectValue placeholder=" " />
       </SelectTrigger>
       <SelectContent>
-        {!isMultiple && <SelectItem value="">Select...</SelectItem>}
+        {!isMultiple && <SelectItem value="__placeholder__">Select...</SelectItem>}
         {options.map(option => (
           <SelectItem key={option} value={option}>
             {inputLabel(i18n, attribute, option)}
