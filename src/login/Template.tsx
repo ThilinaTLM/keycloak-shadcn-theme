@@ -47,7 +47,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="text-center text-4xl font-extrabold text-gray-900 uppercase">
           <img
-            src={`${import.meta.env.BASE_URL}logo.png`}
+            src={`${import.meta.env.BASE_URL}${realm.name}.png`}
             width={500}
             onError={e => {
               e.currentTarget.style.display = "none";
