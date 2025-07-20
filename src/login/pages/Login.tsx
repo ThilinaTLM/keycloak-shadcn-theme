@@ -6,6 +6,7 @@ import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import { Button } from "@/components/ui/button.tsx";
 import { Input } from "@/components/ui/input.tsx";
+import { RotateCcw } from "lucide-react";
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>) {
   const { kcContext, i18n, Template } = props;
@@ -91,6 +92,32 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                       />
                     </p>
                   )}
+                </div>
+              )}
+
+              {usernameHidden && auth.showUsername && (
+                <div>
+                  <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                    {!realm.loginWithEmailAllowed ? msg("username") : !realm.registrationEmailAsUsername ? msg("usernameOrEmail") : msg("email")}
+                  </label>
+                  <div className="mt-1 relative">
+                    <Input
+                      tabIndex={2}
+                      id="username"
+                      name="username"
+                      defaultValue={auth.attemptedUsername ?? ""}
+                      type="text"
+                      disabled
+                      className="h-10 bg-gray-100 pr-10"
+                    />
+                    <a
+                      href={url.loginRestartFlowUrl}
+                      className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                      title={msgStr("restartLoginTooltip")}
+                    >
+                      <RotateCcw size={16} />
+                    </a>
+                  </div>
                 </div>
               )}
 

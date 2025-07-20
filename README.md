@@ -40,23 +40,23 @@ cd keycloakify-shadcn
 2. Install dependencies:
 
 ```bash
-npm install
+pnpm install
 ```
 
 3. Start the development environment:
 
 ```bash
 # Start Storybook for component development
-npm run storybook
+pnpm storybook
 
 # Or start the Vite dev server
-npm run dev
+pnpm dev
 ```
 
 4. Build the theme:
 
 ```bash
-npm run build-keycloak-theme
+pnpm build-keycloak-theme
 ```
 
 ## Docker Deployment
@@ -91,11 +91,11 @@ Default admin credentials:
 
 ### Available Scripts
 
-- `npm run dev` - Start development server
-- `npm run build` - Build the project
-- `npm run build-keycloak-theme` - Build the Keycloak theme
-- `npm run storybook` - Start Storybook for component development
-- `npm run format` - Format code with Prettier
+- `pnpm dev` - Start development server
+- `pnpm build` - Build the project
+- `pnpm build-keycloak-theme` - Build the Keycloak theme
+- `pnpm storybook` - Start Storybook for component development
+- `pnpm format` - Format code with Prettier
 
 ### Creating New Pages
 
