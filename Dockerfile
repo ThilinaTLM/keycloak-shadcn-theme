@@ -1,15 +1,16 @@
 ARG THEME_NAME=shadcn-theme
 ARG REALM_NAME=app-realm
 
-FROM node:20 AS theme-builder
+FROM node:22 AS theme-builder
 
 WORKDIR /app
 
 RUN apt-get update && \
     apt-get install -y openjdk-17-jdk maven && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    npm install -g pnpm
+    rm -rf /var/lib/apt/lists/*
+
+RUN corepack enable
 
 COPY package*.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
