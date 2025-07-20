@@ -26,16 +26,9 @@ services:
       EOSQL
       wait $!
       '
-    volumes:
-      - ./data:/var/lib/postgresql/data
 
   keycloak:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        THEME_NAME: shadcn-theme
-        REALM_NAME: app-realm
+    image: quay.io/keycloak/keycloak:26.0
     environment:
       - KC_HEALTH_ENABLED=true
       - KC_HTTP_ENABLED=true
@@ -54,6 +47,7 @@ services:
       - postgres
     volumes:
       - ./config:/opt/keycloak/data/import
+      - ./dist_keycloak/shadcn-theme.jar:/opt/keycloak/providers/shadcn-theme.jar
     command:
       - start-dev
       - --import-realm
