@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { createKcPageStory } from "../KcPageStory";
 
 const { KcPageStory } = createKcPageStory({ pageId: "saml-post-form.ftl" });
