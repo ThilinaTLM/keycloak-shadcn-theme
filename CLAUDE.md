@@ -53,3 +53,6 @@ This is a Keycloakify project that creates custom Keycloak login themes using Re
 2. Individual pages can be developed in isolation via their .stories.tsx files
 3. Build and test with Docker Compose environment
 4. Theme is packaged as a JAR file for Keycloak deployment
+
+## Development Resources
+- You have access to all the shadcn components, lucide icons, tailwindcss
