@@ -3,8 +3,8 @@
 > [!WARNING]
 > This project is actively in development. Features and APIs may change without notice.
 
-[![Code Quality](https://github.com/ThilinaTLM/keycloakify-shadcn/actions/workflows/code-quality.yml/badge.svg)](https://github.com/ThilinaTLM/keycloakify-shadcn/actions/workflows/code-quality.yml)
-[![Release](https://github.com/ThilinaTLM/keycloakify-shadcn/actions/workflows/release.yml/badge.svg)](https://github.com/ThilinaTLM/keycloakify-shadcn/actions/workflows/release.yml)
+[![Code Quality](https://github.com/ThilinaTLM/keycloak-shadcn-theme/actions/workflows/code-quality.yml/badge.svg)](https://github.com/ThilinaTLM/keycloak-shadcn-theme/actions/workflows/code-quality.yml)
+[![Release](https://github.com/ThilinaTLM/keycloak-shadcn-theme/actions/workflows/release.yml/badge.svg)](https://github.com/ThilinaTLM/keycloak-shadcn-theme/actions/workflows/release.yml)
 
 A modern, beautiful, and fully customizable Keycloak login theme built with [Keycloakify v11](https://www.keycloakify.dev/), [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [shadcn/ui](https://ui.shadcn.com/), and [Tailwind CSS v4](https://tailwindcss.com/). This theme provides a responsive, accessible, and internationalized user interface for all Keycloak authentication flows.
 
@@ -75,8 +75,8 @@ This theme supports **all essential Keycloak login pages**:
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/ThilinaTLM/keycloakify-shadcn.git
-cd keycloakify-shadcn
+git clone https://github.com/ThilinaTLM/keycloak-shadcn-theme.git
+cd keycloak-shadcn-theme
 ```
 
 2. **Install dependencies:**
