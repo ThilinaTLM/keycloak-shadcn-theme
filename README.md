@@ -11,6 +11,7 @@ A modern, beautiful, and fully customizable Keycloak login theme built with [Key
 ## ✨ Features
 
 ### 🎨 Modern Design System
+
 - **shadcn/ui Components**: Built with high-quality, accessible React components
 - **Tailwind CSS v4**: Latest styling with CSS custom properties and improved performance
 - **Geist Font**: Modern typography using the Geist font family
@@ -18,22 +19,26 @@ A modern, beautiful, and fully customizable Keycloak login theme built with [Key
 - **Dark/Light Mode Ready**: Theme structure supports multiple color schemes
 
 ### 🔐 Complete Authentication Coverage
+
 This theme supports **all essential Keycloak login pages**:
 
 **Core Authentication:**
+
 - Login (username/password)
-- Registration 
+- Registration
 - Password Reset & Update
 - Email Verification
 - Logout Confirmation
 
 **Multi-Factor Authentication:**
+
 - OTP/TOTP Configuration & Input
 - Recovery Authentication Codes
 - WebAuthn/Passkeys Support
 - X.509 Certificate Authentication
 
 **Advanced Flows:**
+
 - OAuth Grant Confirmation
 - OAuth Device Authorization
 - Identity Provider Linking
@@ -43,11 +48,13 @@ This theme supports **all essential Keycloak login pages**:
 - Error & Info Pages
 
 ### 🌐 Internationalization
+
 - **30+ Languages Supported**: Complete message bundles for global deployment
 - **RTL Support**: Right-to-left languages fully supported
 - **Custom Messages**: Easy to extend with additional languages
 
 ### 🛠️ Developer Experience
+
 - **TypeScript**: Full type safety throughout the codebase
 - **Storybook**: Interactive component development and testing
 - **ESLint + Prettier**: Code quality and consistent formatting
@@ -66,17 +73,20 @@ This theme supports **all essential Keycloak login pages**:
 ### Installation
 
 1. **Clone the repository:**
+
 ```bash
 git clone https://github.com/ThilinaTLM/keycloakify-shadcn.git
 cd keycloakify-shadcn
 ```
 
 2. **Install dependencies:**
+
 ```bash
 pnpm install
 ```
 
 3. **Start development environment:**
+
 ```bash
 # Option 1: Component development with Storybook
 pnpm storybook
@@ -89,6 +99,7 @@ docker compose up -d
 ```
 
 4. **Build the theme:**
+
 ```bash
 pnpm build-keycloak-theme
 ```
@@ -114,13 +125,13 @@ src/
 
 ### Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | Start Vite development server for component testing |
-| `pnpm build` | Build TypeScript and bundle assets |
-| `pnpm build-keycloak-theme` | Build complete Keycloak theme JAR |
-| `pnpm storybook` | Start Storybook for component development |
-| `pnpm format` | Format code with Prettier |
+| Command                     | Description                                         |
+| --------------------------- | --------------------------------------------------- |
+| `pnpm dev`                  | Start Vite development server for component testing |
+| `pnpm build`                | Build TypeScript and bundle assets                  |
+| `pnpm build-keycloak-theme` | Build complete Keycloak theme JAR                   |
+| `pnpm storybook`            | Start Storybook for component development           |
+| `pnpm format`               | Format code with Prettier                           |
 
 ### Component Development Workflow
 
@@ -131,10 +142,12 @@ src/
 #### Working with Individual Pages
 
 Each login page has two files:
+
 - `PageName.tsx` - The React component implementation
 - `PageName.stories.tsx` - Storybook story for isolated development
 
 **Example: Creating a new page**
+
 ```typescript
 // src/login/pages/MyNewPage.tsx
 import type { PageProps } from "keycloakify/login";
@@ -152,7 +165,7 @@ const { KcPageStory } = createKcPageStory({ pageId: "my-new-page.ftl" });
 
 const meta = {
   title: "login/MyNewPage",
-  component: KcPageStory,
+  component: KcPageStory
 } satisfies Meta<typeof KcPageStory>;
 
 export default meta;
@@ -174,11 +187,13 @@ docker compose down
 ```
 
 **Services included:**
+
 - **Keycloak**: Available at http://localhost:8090
 - **PostgreSQL**: Database backend
 - **Pre-configured realm**: Ready-to-use test environment
 
 **Default credentials:**
+
 - Admin: `admin` / `admin`
 - Test user: `test` / `test`
 
@@ -222,6 +237,7 @@ pnpm build-keycloak-theme
 ### Keycloak Installation
 
 1. **Copy the JAR file** to your Keycloak providers directory:
+
 ```bash
 cp dist_keycloak/shadcn-theme.jar $KEYCLOAK_HOME/providers/
 ```
@@ -254,16 +270,16 @@ keycloakify({
   },
   themeName: "shadcn-theme",
   themeVersion: "1.0.0"
-})
+});
 ```
 
 ### Environment Variables
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `KEYCLOAK_ADMIN` | Admin username | `admin` |
-| `KEYCLOAK_ADMIN_PASSWORD` | Admin password | `admin` |
-| `KC_DB_URL` | Database URL | `jdbc:postgresql://postgres:5432/keycloak` |
+| Variable                  | Description    | Default                                    |
+| ------------------------- | -------------- | ------------------------------------------ |
+| `KEYCLOAK_ADMIN`          | Admin username | `admin`                                    |
+| `KEYCLOAK_ADMIN_PASSWORD` | Admin password | `admin`                                    |
+| `KC_DB_URL`               | Database URL   | `jdbc:postgresql://postgres:5432/keycloak` |
 
 ### Customizing Messages
 
@@ -283,8 +299,9 @@ pnpm storybook
 ```
 
 Each page component has comprehensive stories covering:
+
 - Default states
-- Error conditions  
+- Error conditions
 - Different form configurations
 - Various message scenarios
 
@@ -302,6 +319,7 @@ Use the Docker environment to test complete authentication flows:
 ### Common Issues
 
 **Build Failures:**
+
 ```bash
 # Clear all caches and rebuild
 rm -rf node_modules dist dist_keycloak
@@ -310,6 +328,7 @@ pnpm build-keycloak-theme
 ```
 
 **Docker Issues:**
+
 ```bash
 # Reset Docker environment
 docker compose down -v
@@ -317,11 +336,13 @@ docker compose up -d
 ```
 
 **Theme Not Loading:**
+
 - Verify JAR file is in correct Keycloak providers directory
 - Ensure Keycloak was restarted after theme installation
 - Check Keycloak logs for loading errors
 
 **Development Server Issues:**
+
 ```bash
 # Check if ports are available
 lsof -i :3000  # Vite dev server
@@ -364,7 +385,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - [Keycloakify](https://www.keycloakify.dev/) - For the amazing Keycloak theme framework
-- [shadcn/ui](https://ui.shadcn.com/) - For the beautiful component system  
+- [shadcn/ui](https://ui.shadcn.com/) - For the beautiful component system
 - [Tailwind CSS](https://tailwindcss.com/) - For the utility-first CSS framework
 - [Geist Font](https://vercel.com/font) - For the modern typography
 
