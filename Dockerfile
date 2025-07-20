@@ -17,7 +17,7 @@ RUN pnpm install --frozen-lockfile
 
 COPY . .
 RUN pnpm build && \
-    npx keycloakify build
+    pnpm exec keycloakify build
 
 FROM quay.io/keycloak/keycloak:26.0
 

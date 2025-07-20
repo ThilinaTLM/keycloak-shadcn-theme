@@ -5,10 +5,6 @@ services:
       - "POSTGRES_DB=keycloak"
       - "POSTGRES_PASSWORD=root"
       - "POSTGRES_USER=root"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
     networks:
       - keycloak-network
     healthcheck:
@@ -30,11 +26,16 @@ services:
       EOSQL
       wait $!
       '
+    volumes:
+      - ./data:/var/lib/postgresql/data
 
   keycloak:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        THEME_NAME: shadcn-theme
+        REALM_NAME: app-realm
     environment:
       - KC_HEALTH_ENABLED=true
       - KC_HTTP_ENABLED=true
@@ -51,13 +52,19 @@ services:
       - "8090:8080"
     depends_on:
       - postgres
+    volumes:
+      - ./config:/opt/keycloak/data/import
+    command:
+      - start-dev
+      - --import-realm
+      - --file=/opt/keycloak/data/import/app-realm.json
     networks:
       - keycloak-network
 
   keycloak-export:
-    image: quay.io/keycloak/keycloak:26.0
     profiles:
-      - debug
+      - export
+    image: quay.io/keycloak/keycloak:26.0
     environment:
       - KC_HEALTH_ENABLED=true
       - KC_DB=postgres
@@ -75,12 +82,10 @@ services:
       - keycloak-network
     command:
       - export
-      - --file=/opt/keycloak/data/export/app-realm.json
+      - --dir=/opt/keycloak/data/export
       - --realm=app
+      - --users=realm_file
 
 networks:
   keycloak-network:
     driver: bridge
-
-volumes:
-  postgres_data:
