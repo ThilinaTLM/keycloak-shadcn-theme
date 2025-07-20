@@ -5,15 +5,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ### Development
-- `npm run dev` - Start Vite development server
-- `npm run storybook` - Start Storybook for component development (port 6006)
+- `pnpm dev` - Start Vite development server
+- `pnpm storybook` - Start Storybook for component development (port 6006)
 
 ### Build
-- `npm run build` - Build TypeScript and Vite bundle
-- `npm run build-keycloak-theme` - Build the complete Keycloak theme (runs build + keycloakify build)
+- `pnpm build` - Build TypeScript and Vite bundle
+- `pnpm build-keycloak-theme` - Build the complete Keycloak theme (runs build + keycloakify build)
 
 ### Code Quality
-- `npm run format` - Format code with Prettier
+- `pnpm format` - Format code with Prettier
 
 ### Docker Environment
 - `docker compose up -d` - Start full Keycloak development environment

@@ -8,13 +8,14 @@ WORKDIR /app
 RUN apt-get update && \
     apt-get install -y openjdk-17-jdk maven && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    npm install -g pnpm
 
-COPY package*.json ./
-RUN npm install
+COPY package*.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
 COPY . .
-RUN npm run build && \
+RUN pnpm build && \
     npx keycloakify build
 
 FROM quay.io/keycloak/keycloak:26.0

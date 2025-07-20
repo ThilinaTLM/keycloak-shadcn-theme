@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
+          cache: "pnpm"
 
       - name: Set up JDK
         uses: actions/setup-java@v4
@@ -26,11 +26,16 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Build theme
-        run: npm run build-keycloak-theme
+        run: pnpm build-keycloak-theme
 
       - name: Get version from tag
         id: get_version

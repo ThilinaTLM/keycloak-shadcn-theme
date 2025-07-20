@@ -2,6 +2,7 @@
 logs
 *.log
 npm-debug.log*
+pnpm-debug.log*
 
 # Runtime data
 pids
@@ -41,6 +42,9 @@ jspm_packages
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# pnpm cache directory
+.pnpm-store/
 
 
 # Optional REPL history
