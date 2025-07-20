@@ -1,7 +1,7 @@
 ARG THEME_NAME=shadcn-theme
 ARG REALM_NAME=app-realm
 
-FROM node:20 AS theme-builder
+FROM node:22 AS theme-builder
 
 WORKDIR /app
 
@@ -10,12 +10,14 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY package*.json ./
-RUN npm install
+RUN corepack enable
+
+COPY package*.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
 COPY . .
-RUN npm run build && \
-    npx keycloakify build
+RUN pnpm build && \
+    pnpm exec keycloakify build
 
 FROM quay.io/keycloak/keycloak:26.0
 
