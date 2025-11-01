@@ -119,7 +119,7 @@ export default function LoginPasskeysConditionalAuthenticate(
                 action={url.loginAction}
                 method="post"
                 style={{ display: "none" }}
-                onSubmit={event => {
+                onSubmit={(event) => {
                   try {
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-expect-error

@@ -31,7 +31,7 @@ export default function LoginOauthGrant(props: PageProps<Extract<KcContext, { pa
       <div id="kc-oauth" className="content-area">
         <h3>{msg("oauthGrantRequest")}</h3>
         <ul>
-          {oauth.clientScopesRequested.map(clientScope => (
+          {oauth.clientScopesRequested.map((clientScope) => (
             <li key={clientScope.consentScreenText}>
               <span>
                 {advancedMsg(clientScope.consentScreenText)}

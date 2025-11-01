@@ -35,7 +35,7 @@ export default function Info(props: PageProps<Extract<KcContext, { pageId: "info
 
                     if (requiredActions) {
                       html += " <strong class='font-medium'>";
-                      html += requiredActions.map(requiredAction => advancedMsgStr(`requiredAction.${requiredAction}`)).join(", ");
+                      html += requiredActions.map((requiredAction) => advancedMsgStr(`requiredAction.${requiredAction}`)).join(", ");
                       html += "</strong>";
                     }
 

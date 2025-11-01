@@ -215,7 +215,7 @@ export const WithTermsAcceptance: Story = {
   )
 };
 export const WithTermsNotAccepted: Story = {
-  render: args => (
+  render: (args) => (
     <KcPageStory
       {...args}
       kcContext={{

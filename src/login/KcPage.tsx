@@ -33,93 +33,27 @@ export default function KcPage(props: { kcContext: KcContext }) {
       {(() => {
         switch (kcContext.pageId) {
           case "login.ftl":
-            return (
-              <Login
-                {...{ kcContext, i18n, classes }}
-                Template={Template}
-                doUseDefaultCss={true}
-              />
-            );
+            return <Login {...{ kcContext, i18n, classes }} Template={Template} doUseDefaultCss={true} />;
           case "login-username.ftl":
-            return (
-              <LoginUsername
-                {...{ kcContext, i18n, classes }}
-                Template={Template}
-                doUseDefaultCss={true}
-              />
-            );
+            return <LoginUsername {...{ kcContext, i18n, classes }} Template={Template} doUseDefaultCss={true} />;
           case "login-password.ftl":
-            return (
-              <LoginPassword
-                {...{ kcContext, i18n, classes }}
-                Template={Template}
-                doUseDefaultCss={true}
-              />
-            );
+            return <LoginPassword {...{ kcContext, i18n, classes }} Template={Template} doUseDefaultCss={true} />;
           case "login-reset-password.ftl":
-            return (
-              <LoginResetPassword
-                {...{ kcContext, i18n, classes }}
-                Template={Template}
-                doUseDefaultCss={true}
-              />
-            );
+            return <LoginResetPassword {...{ kcContext, i18n, classes }} Template={Template} doUseDefaultCss={true} />;
           case "login-verify-email.ftl":
-            return (
-              <LoginVerifyEmail
-                {...{ kcContext, i18n, classes }}
-                Template={Template}
-                doUseDefaultCss={true}
-              />
-            );
+            return <LoginVerifyEmail {...{ kcContext, i18n, classes }} Template={Template} doUseDefaultCss={true} />;
           case "login-otp.ftl":
-            return (
-              <LoginOtp
-                {...{ kcContext, i18n, classes }}
-                Template={Template}
-                doUseDefaultCss={true}
-              />
-            );
+            return <LoginOtp {...{ kcContext, i18n, classes }} Template={Template} doUseDefaultCss={true} />;
           case "info.ftl":
-            return (
-              <Info
-                {...{ kcContext, i18n, classes }}
-                Template={Template}
-                doUseDefaultCss={true}
-              />
-            );
+            return <Info {...{ kcContext, i18n, classes }} Template={Template} doUseDefaultCss={true} />;
           case "error.ftl":
-            return (
-              <Error
-                {...{ kcContext, i18n, classes }}
-                Template={Template}
-                doUseDefaultCss={true}
-              />
-            );
+            return <Error {...{ kcContext, i18n, classes }} Template={Template} doUseDefaultCss={true} />;
           case "login-update-password.ftl":
-            return (
-              <LoginUpdatePassword
-                {...{ kcContext, i18n, classes }}
-                Template={Template}
-                doUseDefaultCss={true}
-              />
-            );
+            return <LoginUpdatePassword {...{ kcContext, i18n, classes }} Template={Template} doUseDefaultCss={true} />;
           case "login-page-expired.ftl":
-            return (
-              <LoginPageExpired
-                {...{ kcContext, i18n, classes }}
-                Template={Template}
-                doUseDefaultCss={true}
-              />
-            );
+            return <LoginPageExpired {...{ kcContext, i18n, classes }} Template={Template} doUseDefaultCss={true} />;
           case "logout-confirm.ftl":
-            return (
-              <LogoutConfirm
-                {...{ kcContext, i18n, classes }}
-                Template={Template}
-                doUseDefaultCss={true}
-              />
-            );
+            return <LogoutConfirm {...{ kcContext, i18n, classes }} Template={Template} doUseDefaultCss={true} />;
           case "register.ftl":
             return (
               <Register

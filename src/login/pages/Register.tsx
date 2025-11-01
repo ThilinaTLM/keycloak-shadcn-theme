@@ -112,7 +112,7 @@ function TermsAcceptance(props: {
           id="termsAccepted"
           name="termsAccepted"
           checked={areTermsAccepted}
-          onCheckedChange={checked => onAreTermsAcceptedValueChange(checked as boolean)}
+          onCheckedChange={(checked) => onAreTermsAcceptedValueChange(checked as boolean)}
           aria-invalid={messagesPerField.existsError("termsAccepted")}
         />
         <label htmlFor="termsAccepted" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">

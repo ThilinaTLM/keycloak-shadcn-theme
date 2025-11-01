@@ -49,7 +49,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
           <img
             src={`${import.meta.env.BASE_URL}${realm.name}.png`}
             width={500}
-            onError={e => {
+            onError={(e) => {
               e.currentTarget.style.display = "none";
               e.currentTarget.nextElementSibling?.removeAttribute("hidden");
             }}
@@ -60,7 +60,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
           <div className="fixed right-5 top-5">
             <Select
               value={currentLanguage.languageTag}
-              onValueChange={value => {
+              onValueChange={(value) => {
                 const selected = enabledLanguages.find(({ languageTag }) => languageTag === value);
                 if (!selected) return;
                 window.location.href = selected.href;

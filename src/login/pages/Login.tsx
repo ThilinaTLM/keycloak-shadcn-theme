@@ -35,7 +35,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
               <hr className="my-6" />
               <h2 className="text-xl font-semibold mb-4">{msg("identity-provider-login-label")}</h2>
               <ul className={`grid ${social.providers.length > 3 ? "grid-cols-2 gap-4" : "grid-cols-1 gap-2"}`}>
-                {social.providers.map(p => (
+                {social.providers.map((p) => (
                   <li key={p.alias}>
                     <a
                       id={`social-${p.alias}`}

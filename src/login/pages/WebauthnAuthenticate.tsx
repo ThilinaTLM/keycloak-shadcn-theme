@@ -55,7 +55,7 @@ export default function WebauthnAuthenticate(props: PageProps<Extract<KcContext,
           {authenticators && (
             <>
               <form id="authn_select" className={kcClsx("kcFormClass")}>
-                {authenticators.authenticators.map(authenticator => (
+                {authenticators.authenticators.map((authenticator) => (
                   <input key={authenticator.credentialId} type="hidden" name="authn_use_chk" value={authenticator.credentialId} />
                 ))}
               </form>

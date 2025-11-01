@@ -12,7 +12,8 @@
     "build": "tsc && vite build",
     "build-keycloak-theme": "pnpm build && keycloakify build",
     "storybook": "storybook dev -p 6006",
-    "format": "prettier . --write"
+    "format": "prettier . --write",
+    "lint:fix": "eslint --fix ."
   },
   "license": "MIT",
   "keywords": [],

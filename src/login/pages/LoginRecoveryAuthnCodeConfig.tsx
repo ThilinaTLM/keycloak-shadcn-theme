@@ -64,7 +64,7 @@ export default function LoginRecoveryAuthnCodeConfig(props: PageProps<Extract<Kc
           type="checkbox"
           id="kcRecoveryCodesConfirmationCheck"
           name="kcRecoveryCodesConfirmationCheck"
-          onChange={event => {
+          onChange={(event) => {
             //@ts-expect-error: This is inherited from the original code
             document.getElementById("saveRecoveryAuthnCodesBtn").disabled = !event.target.checked;
           }}

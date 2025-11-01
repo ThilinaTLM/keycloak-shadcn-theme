@@ -257,7 +257,7 @@ function InputTag(props: InputFieldByTypeProps & { fieldIndex: number | undefine
           return valueOrValues;
         })()}
         className="h-10"
-        aria-invalid={displayableErrors.find(error => error.fieldIndex === fieldIndex) !== undefined}
+        aria-invalid={displayableErrors.find((error) => error.fieldIndex === fieldIndex) !== undefined}
         disabled={attribute.readOnly}
         autoComplete={attribute.autocomplete}
         placeholder={
@@ -277,7 +277,7 @@ function InputTag(props: InputFieldByTypeProps & { fieldIndex: number | undefine
         {...(attribute.annotations.inputTypeMin && { min: attribute.annotations.inputTypeMin })}
         {...(attribute.annotations.inputTypeStep && { step: attribute.annotations.inputTypeStep })}
         {...Object.fromEntries(Object.entries(attribute.html5DataAnnotations ?? {}).map(([key, value]) => [`data-${key}`, value]))}
-        onChange={event => {
+        onChange={(event) => {
           dispatchFormAction({
             action: "update",
             name: attribute.name,
@@ -332,7 +332,7 @@ function TextareaTag(props: InputFieldByTypeProps) {
         maxLength: parseInt(`${attribute.annotations.inputTypeMaxlength}`)
       })}
       value={valueOrValues}
-      onChange={event =>
+      onChange={(event) =>
         dispatchFormAction({
           action: "update",
           name: attribute.name,
@@ -358,7 +358,7 @@ function SelectTag(props: InputFieldByTypeProps) {
   return (
     <Select
       value={isMultiple ? undefined : (valueOrValues as string) === "" ? "__placeholder__" : (valueOrValues as string)}
-      onValueChange={value =>
+      onValueChange={(value) =>
         dispatchFormAction({
           action: "update",
           name: attribute.name,
@@ -371,7 +371,7 @@ function SelectTag(props: InputFieldByTypeProps) {
       </SelectTrigger>
       <SelectContent>
         {!isMultiple && <SelectItem value="__placeholder__">Select...</SelectItem>}
-        {options.map(option => (
+        {options.map((option) => (
           <SelectItem key={option} value={option}>
             {inputLabel(i18n, attribute, option)}
           </SelectItem>
@@ -394,7 +394,7 @@ function InputTagSelects(props: InputFieldByTypeProps) {
       <RadioGroup
         className="space-y-3"
         value={valueOrValues as string}
-        onValueChange={value =>
+        onValueChange={(value) =>
           dispatchFormAction({
             action: "update",
             name: attribute.name,
@@ -404,7 +404,7 @@ function InputTagSelects(props: InputFieldByTypeProps) {
         aria-invalid={displayableErrors.length !== 0}
         disabled={attribute.readOnly}
       >
-        {options.map(option => (
+        {options.map((option) => (
           <div key={option} className="flex items-center space-x-2">
             <RadioGroupItem value={option} id={`${attribute.name}-${option}`} />
             <Label htmlFor={`${attribute.name}-${option}`} className={`text-sm ${attribute.readOnly ? "text-gray-500" : "text-gray-900"}`}>
@@ -419,7 +419,7 @@ function InputTagSelects(props: InputFieldByTypeProps) {
   // multiselect-checkboxes
   return (
     <div className="space-y-3">
-      {options.map(option => (
+      {options.map((option) => (
         <div key={option} className="flex items-center space-x-2">
           <Checkbox
             id={`${attribute.name}-${option}`}
@@ -428,7 +428,7 @@ function InputTagSelects(props: InputFieldByTypeProps) {
             checked={valueOrValues instanceof Array ? valueOrValues.includes(option) : valueOrValues === option}
             disabled={attribute.readOnly}
             aria-invalid={displayableErrors.length !== 0}
-            onCheckedChange={checked => {
+            onCheckedChange={(checked) => {
               dispatchFormAction({
                 action: "update",
                 name: attribute.name,
@@ -436,7 +436,7 @@ function InputTagSelects(props: InputFieldByTypeProps) {
                   valueOrValues instanceof Array
                     ? checked
                       ? [...valueOrValues, option]
-                      : valueOrValues.filter(v => v !== option)
+                      : valueOrValues.filter((v) => v !== option)
                     : checked
                       ? option
                       : ""
@@ -461,7 +461,7 @@ function InputTagSelects(props: InputFieldByTypeProps) {
 
 function FieldErrors(props: { attribute: Attribute; displayableErrors: FormFieldError[]; fieldIndex: number | undefined }) {
   const { attribute, fieldIndex } = props;
-  const displayableErrors = props.displayableErrors.filter(error => error.fieldIndex === fieldIndex);
+  const displayableErrors = props.displayableErrors.filter((error) => error.fieldIndex === fieldIndex);
 
   if (displayableErrors.length === 0) {
     return null;

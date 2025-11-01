@@ -20,14 +20,10 @@ export const { getKcContextMock } = createGetKcContextMock({
   overridesPerPage: {}
 });
 
-export function createKcPageStory<PageId extends KcContext["pageId"]>(params: {
-  pageId: PageId;
-}) {
+export function createKcPageStory<PageId extends KcContext["pageId"]>(params: { pageId: PageId }) {
   const { pageId } = params;
 
-  function KcPageStory(props: {
-    kcContext?: DeepPartial<Extract<KcContext, { pageId: PageId }>>;
-  }) {
+  function KcPageStory(props: { kcContext?: DeepPartial<Extract<KcContext, { pageId: PageId }>> }) {
     const { kcContext: overrides } = props;
 
     const kcContextMock = getKcContextMock({
