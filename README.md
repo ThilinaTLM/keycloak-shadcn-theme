@@ -136,9 +136,17 @@ This theme supports **all essential Keycloak login pages**:
 
 ### Login Page
 
-<img src="docs/login-page.png" alt="Modern Login Page with Social Providers" width="700px">
+<div align="center">
+  <img src="docs/login-page.png" alt="Modern Login Page - Light Theme" width="700px">
+  <p><em>Light Theme</em></p>
+</div>
 
-Clean, modern login interface with support for multiple authentication providers including social logins (Google, Microsoft), featuring contemporary design with excellent spacing and typography.
+<div align="center">
+  <img src="docs/login-page-dark.png" alt="Modern Login Page - Dark Theme" width="700px">
+  <p><em>Dark Theme</em></p>
+</div>
+
+Clean, modern login interface with support for multiple authentication providers including social logins (Google, Microsoft), featuring contemporary design with excellent spacing and typography. **Includes built-in dark mode support** with seamless theme switching.
 
 ### Registration Page
 
@@ -231,7 +239,7 @@ Check out the [DEVELOPMENT.md](DEVELOPMENT.md) guide for:
 ## 🗺️ Roadmap
 
 - [ ] Admin theme implementation
-- [ ] Dark mode toggle
+- [x] Dark mode toggle
 - [ ] Additional language support
 - [ ] Custom branding system
 - [ ] Advanced form validation
