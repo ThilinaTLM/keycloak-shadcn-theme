@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Label } from "@/components/ui/label";
+import { ProviderIcon } from "../lib/providerIcons";
 
 export default function LoginUsername(props: PageProps<Extract<KcContext, { pageId: "login-username.ftl" }>, I18n>) {
   const { kcContext, i18n, Template } = props;
@@ -23,7 +24,7 @@ export default function LoginUsername(props: PageProps<Extract<KcContext, { page
       infoNode={
         <span>
           {msg("noAccount")}{" "}
-          <a className="text-blue-600 hover:underline" tabIndex={6} href={url.registrationUrl}>
+          <a className="text-primary hover:underline" tabIndex={6} href={url.registrationUrl}>
             {msg("doRegister")}
           </a>
         </span>
@@ -36,14 +37,14 @@ export default function LoginUsername(props: PageProps<Extract<KcContext, { page
               <hr className="my-6" />
               <h2 className="text-xl font-semibold mb-4">{msg("identity-provider-login-label")}</h2>
               <ul className={`grid ${social.providers.length > 3 ? "grid-cols-2 gap-4" : "grid-cols-1 gap-2"}`}>
-                {social.providers.map(p => (
+                {social.providers.map((p) => (
                   <li key={p.alias}>
                     <a
                       id={`social-${p.alias}`}
-                      className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+                      className="flex items-center justify-center px-4 py-2 border border-border rounded-md shadow-sm text-sm font-medium text-foreground bg-card hover:bg-accent"
                       href={p.loginUrl}
                     >
-                      {p.iconClasses && <i className={`mr-2 ${p.iconClasses}`} aria-hidden="true"></i>}
+                      <ProviderIcon alias={p.alias} size={20} className="mr-2" />
                       <span dangerouslySetInnerHTML={{ __html: kcSanitize(p.displayName) }}></span>
                     </a>
                   </li>

@@ -59,7 +59,7 @@ export default function Register(props: RegisterProps) {
 
             <div className="flex flex-col space-y-4 pt-4">
               <div className="flex justify-between items-center">
-                <a href={url.loginUrl} className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                <a href={url.loginUrl} className="text-sm font-medium text-primary hover:text-primary/80">
                   {msg("backToLogin")}
                 </a>
               </div>
@@ -100,9 +100,9 @@ function TermsAcceptance(props: {
 
   return (
     <div className="space-y-4">
-      <div className="rounded-md bg-gray-50 p-4">
-        <h3 className="text-sm font-medium text-gray-900 mb-2">{msg("termsTitle")}</h3>
-        <div className="text-sm text-gray-700" id="kc-registration-terms-text">
+      <div className="rounded-md bg-muted p-4">
+        <h3 className="text-sm font-medium text-foreground mb-2">{msg("termsTitle")}</h3>
+        <div className="text-sm text-foreground" id="kc-registration-terms-text">
           {msg("termsText")}
         </div>
       </div>
@@ -112,7 +112,7 @@ function TermsAcceptance(props: {
           id="termsAccepted"
           name="termsAccepted"
           checked={areTermsAccepted}
-          onCheckedChange={checked => onAreTermsAcceptedValueChange(checked as boolean)}
+          onCheckedChange={(checked) => onAreTermsAcceptedValueChange(checked as boolean)}
           aria-invalid={messagesPerField.existsError("termsAccepted")}
         />
         <label htmlFor="termsAccepted" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">

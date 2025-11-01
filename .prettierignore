@@ -4,3 +4,4 @@ node_modules/
 /public/keycloakify-dev-resources/
 /.vscode/
 /.yarn_home/
+/src/components/ui/

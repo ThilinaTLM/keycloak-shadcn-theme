@@ -407,11 +407,7 @@
   "otpPolicyLookAheadWindow": 1,
   "otpPolicyPeriod": 30,
   "otpPolicyCodeReusable": false,
-  "otpSupportedApplications": [
-    "totpAppFreeOTPName",
-    "totpAppGoogleName",
-    "totpAppMicrosoftAuthenticatorName"
-  ],
+  "otpSupportedApplications": ["totpAppFreeOTPName", "totpAppGoogleName", "totpAppMicrosoftAuthenticatorName"],
   "localizationTexts": {},
   "webAuthnPolicyRpEntityName": "keycloak",
   "webAuthnPolicySignatureAlgorithms": ["ES256", "RS256"],
@@ -523,13 +519,7 @@
       "fullScopeAllowed": false,
       "nodeReRegistrationTimeout": 0,
       "defaultClientScopes": ["web-origins", "acr", "roles", "profile", "basic", "email"],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "organization",
-        "offline_access",
-        "microprofile-jwt"
-      ]
+      "optionalClientScopes": ["address", "phone", "organization", "offline_access", "microprofile-jwt"]
     },
     {
       "id": "1338a310-e6f3-47d5-a23e-33f77ab4898f",
@@ -572,13 +562,7 @@
         }
       ],
       "defaultClientScopes": ["web-origins", "acr", "roles", "profile", "basic", "email"],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "organization",
-        "offline_access",
-        "microprofile-jwt"
-      ]
+      "optionalClientScopes": ["address", "phone", "organization", "offline_access", "microprofile-jwt"]
     },
     {
       "id": "4fbd1c4d-2c80-4584-8964-a2e59003bdee",
@@ -609,13 +593,7 @@
       "fullScopeAllowed": true,
       "nodeReRegistrationTimeout": 0,
       "defaultClientScopes": ["web-origins", "acr", "roles", "profile", "basic", "email"],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "organization",
-        "offline_access",
-        "microprofile-jwt"
-      ]
+      "optionalClientScopes": ["address", "phone", "organization", "offline_access", "microprofile-jwt"]
     },
     {
       "id": "56a99db4-870a-49fd-8319-548f726f2746",
@@ -645,13 +623,7 @@
       "fullScopeAllowed": false,
       "nodeReRegistrationTimeout": 0,
       "defaultClientScopes": ["web-origins", "acr", "roles", "profile", "basic", "email"],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "organization",
-        "offline_access",
-        "microprofile-jwt"
-      ]
+      "optionalClientScopes": ["address", "phone", "organization", "offline_access", "microprofile-jwt"]
     },
     {
       "id": "c752219c-536c-4b3e-9b9b-cfc8aa29cae8",
@@ -743,13 +715,7 @@
         }
       ],
       "defaultClientScopes": ["web-origins", "acr", "roles", "profile", "basic", "email"],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "organization",
-        "offline_access",
-        "microprofile-jwt"
-      ]
+      "optionalClientScopes": ["address", "phone", "organization", "offline_access", "microprofile-jwt"]
     },
     {
       "id": "940a1842-4722-4734-bb3f-d2e24d11e873",
@@ -779,13 +745,7 @@
       "fullScopeAllowed": false,
       "nodeReRegistrationTimeout": 0,
       "defaultClientScopes": ["web-origins", "acr", "roles", "profile", "basic", "email"],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "organization",
-        "offline_access",
-        "microprofile-jwt"
-      ]
+      "optionalClientScopes": ["address", "phone", "organization", "offline_access", "microprofile-jwt"]
     },
     {
       "id": "3d2f7375-49ba-4b2e-a0ea-d419e3332424",
@@ -837,13 +797,7 @@
         }
       ],
       "defaultClientScopes": ["web-origins", "acr", "roles", "profile", "basic", "email"],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "organization",
-        "offline_access",
-        "microprofile-jwt"
-      ]
+      "optionalClientScopes": ["address", "phone", "organization", "offline_access", "microprofile-jwt"]
     }
   ],
   "clientScopes": [
@@ -1473,23 +1427,8 @@
       ]
     }
   ],
-  "defaultDefaultClientScopes": [
-    "role_list",
-    "saml_organization",
-    "profile",
-    "email",
-    "roles",
-    "web-origins",
-    "acr",
-    "basic"
-  ],
-  "defaultOptionalClientScopes": [
-    "offline_access",
-    "address",
-    "phone",
-    "microprofile-jwt",
-    "organization"
-  ],
+  "defaultDefaultClientScopes": ["role_list", "saml_organization", "profile", "email", "roles", "web-origins", "acr", "basic"],
+  "defaultOptionalClientScopes": ["offline_access", "address", "phone", "microprofile-jwt", "organization"],
   "browserSecurityHeaders": {
     "contentSecurityPolicyReportOnly": "",
     "xContentTypeOptions": "nosniff",

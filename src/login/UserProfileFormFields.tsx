@@ -60,14 +60,14 @@ export default function UserProfileFormFields(props: UserProfileFormFieldsProps<
             }}
           >
             <div className="space-y-1">
-              <Label htmlFor={attribute.name} className="text-sm font-medium text-gray-700">
+              <Label htmlFor={attribute.name} className="text-sm font-medium text-foreground">
                 {advancedMsg(attribute.displayName ?? "")}
-                {attribute.required && <span className="text-red-500 ml-1">*</span>}
+                {attribute.required && <span className="text-destructive ml-1">*</span>}
               </Label>
 
               <div className="space-y-2">
                 {attribute.annotations.inputHelperTextBefore && (
-                  <p className="text-sm text-gray-500" id={`form-help-text-before-${attribute.name}`}>
+                  <p className="text-sm text-muted-foreground" id={`form-help-text-before-${attribute.name}`}>
                     {advancedMsg(attribute.annotations.inputHelperTextBefore)}
                   </p>
                 )}
@@ -83,7 +83,7 @@ export default function UserProfileFormFields(props: UserProfileFormFieldsProps<
                 <FieldErrors attribute={attribute} displayableErrors={displayableErrors} fieldIndex={undefined} />
 
                 {attribute.annotations.inputHelperTextAfter && (
-                  <p className="text-sm text-gray-500" id={`form-help-text-after-${attribute.name}`}>
+                  <p className="text-sm text-muted-foreground" id={`form-help-text-after-${attribute.name}`}>
                     {advancedMsg(attribute.annotations.inputHelperTextAfter)}
                   </p>
                 )}
@@ -128,7 +128,7 @@ function GroupLabel(props: { attribute: Attribute; groupNameRef: { current: stri
 
             return (
               <div className="mb-2">
-                <h2 id={`header-${attribute.group.name}`} className="text-lg font-semibold text-gray-900">
+                <h2 id={`header-${attribute.group.name}`} className="text-lg font-semibold text-foreground">
                   {groupHeaderText}
                 </h2>
               </div>
@@ -141,7 +141,7 @@ function GroupLabel(props: { attribute: Attribute; groupNameRef: { current: stri
               const groupDescriptionText = advancedMsg(groupDisplayDescription);
 
               return (
-                <p id={`description-${attribute.group.name}`} className="text-sm text-gray-500">
+                <p id={`description-${attribute.group.name}`} className="text-sm text-muted-foreground">
                   {groupDescriptionText}
                 </p>
               );
@@ -226,7 +226,7 @@ function PasswordWrapper(props: { i18n: I18n; passwordInputId: string; children:
         aria-label={msgStr(isPasswordRevealed ? "hidePassword" : "showPassword")}
         aria-controls={passwordInputId}
       >
-        {isPasswordRevealed ? <EyeOff className="h-4 w-4 text-gray-500" /> : <Eye className="h-4 w-4 text-gray-500" />}
+        {isPasswordRevealed ? <EyeOff className="h-4 w-4 text-muted-foreground" /> : <Eye className="h-4 w-4 text-muted-foreground" />}
       </Button>
     </div>
   );
@@ -257,7 +257,7 @@ function InputTag(props: InputFieldByTypeProps & { fieldIndex: number | undefine
           return valueOrValues;
         })()}
         className="h-10"
-        aria-invalid={displayableErrors.find(error => error.fieldIndex === fieldIndex) !== undefined}
+        aria-invalid={displayableErrors.find((error) => error.fieldIndex === fieldIndex) !== undefined}
         disabled={attribute.readOnly}
         autoComplete={attribute.autocomplete}
         placeholder={
@@ -277,7 +277,7 @@ function InputTag(props: InputFieldByTypeProps & { fieldIndex: number | undefine
         {...(attribute.annotations.inputTypeMin && { min: attribute.annotations.inputTypeMin })}
         {...(attribute.annotations.inputTypeStep && { step: attribute.annotations.inputTypeStep })}
         {...Object.fromEntries(Object.entries(attribute.html5DataAnnotations ?? {}).map(([key, value]) => [`data-${key}`, value]))}
-        onChange={event => {
+        onChange={(event) => {
           dispatchFormAction({
             action: "update",
             name: attribute.name,
@@ -332,7 +332,7 @@ function TextareaTag(props: InputFieldByTypeProps) {
         maxLength: parseInt(`${attribute.annotations.inputTypeMaxlength}`)
       })}
       value={valueOrValues}
-      onChange={event =>
+      onChange={(event) =>
         dispatchFormAction({
           action: "update",
           name: attribute.name,
@@ -358,7 +358,7 @@ function SelectTag(props: InputFieldByTypeProps) {
   return (
     <Select
       value={isMultiple ? undefined : (valueOrValues as string) === "" ? "__placeholder__" : (valueOrValues as string)}
-      onValueChange={value =>
+      onValueChange={(value) =>
         dispatchFormAction({
           action: "update",
           name: attribute.name,
@@ -371,7 +371,7 @@ function SelectTag(props: InputFieldByTypeProps) {
       </SelectTrigger>
       <SelectContent>
         {!isMultiple && <SelectItem value="__placeholder__">Select...</SelectItem>}
-        {options.map(option => (
+        {options.map((option) => (
           <SelectItem key={option} value={option}>
             {inputLabel(i18n, attribute, option)}
           </SelectItem>
@@ -394,7 +394,7 @@ function InputTagSelects(props: InputFieldByTypeProps) {
       <RadioGroup
         className="space-y-3"
         value={valueOrValues as string}
-        onValueChange={value =>
+        onValueChange={(value) =>
           dispatchFormAction({
             action: "update",
             name: attribute.name,
@@ -404,10 +404,10 @@ function InputTagSelects(props: InputFieldByTypeProps) {
         aria-invalid={displayableErrors.length !== 0}
         disabled={attribute.readOnly}
       >
-        {options.map(option => (
+        {options.map((option) => (
           <div key={option} className="flex items-center space-x-2">
             <RadioGroupItem value={option} id={`${attribute.name}-${option}`} />
-            <Label htmlFor={`${attribute.name}-${option}`} className={`text-sm ${attribute.readOnly ? "text-gray-500" : "text-gray-900"}`}>
+            <Label htmlFor={`${attribute.name}-${option}`} className={`text-sm ${attribute.readOnly ? "text-muted-foreground" : "text-foreground"}`}>
               {inputLabel(i18n, attribute, option)}
             </Label>
           </div>
@@ -419,7 +419,7 @@ function InputTagSelects(props: InputFieldByTypeProps) {
   // multiselect-checkboxes
   return (
     <div className="space-y-3">
-      {options.map(option => (
+      {options.map((option) => (
         <div key={option} className="flex items-center space-x-2">
           <Checkbox
             id={`${attribute.name}-${option}`}
@@ -428,7 +428,7 @@ function InputTagSelects(props: InputFieldByTypeProps) {
             checked={valueOrValues instanceof Array ? valueOrValues.includes(option) : valueOrValues === option}
             disabled={attribute.readOnly}
             aria-invalid={displayableErrors.length !== 0}
-            onCheckedChange={checked => {
+            onCheckedChange={(checked) => {
               dispatchFormAction({
                 action: "update",
                 name: attribute.name,
@@ -436,7 +436,7 @@ function InputTagSelects(props: InputFieldByTypeProps) {
                   valueOrValues instanceof Array
                     ? checked
                       ? [...valueOrValues, option]
-                      : valueOrValues.filter(v => v !== option)
+                      : valueOrValues.filter((v) => v !== option)
                     : checked
                       ? option
                       : ""
@@ -450,7 +450,7 @@ function InputTagSelects(props: InputFieldByTypeProps) {
               })
             }
           />
-          <Label htmlFor={`${attribute.name}-${option}`} className={`text-sm ${attribute.readOnly ? "text-gray-500" : "text-gray-900"}`}>
+          <Label htmlFor={`${attribute.name}-${option}`} className={`text-sm ${attribute.readOnly ? "text-muted-foreground" : "text-foreground"}`}>
             {inputLabel(i18n, attribute, option)}
           </Label>
         </div>
@@ -461,7 +461,7 @@ function InputTagSelects(props: InputFieldByTypeProps) {
 
 function FieldErrors(props: { attribute: Attribute; displayableErrors: FormFieldError[]; fieldIndex: number | undefined }) {
   const { attribute, fieldIndex } = props;
-  const displayableErrors = props.displayableErrors.filter(error => error.fieldIndex === fieldIndex);
+  const displayableErrors = props.displayableErrors.filter((error) => error.fieldIndex === fieldIndex);
 
   if (displayableErrors.length === 0) {
     return null;

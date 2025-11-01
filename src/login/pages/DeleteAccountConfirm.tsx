@@ -18,18 +18,12 @@ export default function DeleteAccountConfirm(props: PageProps<Extract<KcContext,
   return (
     <Template kcContext={kcContext} i18n={i18n} doUseDefaultCss={doUseDefaultCss} classes={classes} headerNode={msg("deleteAccountConfirm")}>
       <form action={url.loginAction} className="form-vertical" method="post">
-        <div className="alert alert-warning" style={{ marginTop: "0", marginBottom: "30px" }}>
+        <div className="alert alert-warning mt-0 mb-8">
           <span className="pficon pficon-warning-triangle-o"></span>
           {msg("irreversibleAction")}
         </div>
         <p>{msg("deletingImplies")}</p>
-        <ul
-          style={{
-            color: "#72767b",
-            listStyle: "disc",
-            listStylePosition: "inside"
-          }}
-        >
+        <ul className="text-muted-foreground list-disc list-inside">
           <li>{msg("loggingOutImmediately")}</li>
           <li>{msg("errasingData")}</li>
         </ul>

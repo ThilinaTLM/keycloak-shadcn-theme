@@ -35,7 +35,7 @@ export default function Info(props: PageProps<Extract<KcContext, { pageId: "info
 
                     if (requiredActions) {
                       html += " <strong class='font-medium'>";
-                      html += requiredActions.map(requiredAction => advancedMsgStr(`requiredAction.${requiredAction}`)).join(", ");
+                      html += requiredActions.map((requiredAction) => advancedMsgStr(`requiredAction.${requiredAction}`)).join(", ");
                       html += "</strong>";
                     }
 
@@ -49,17 +49,17 @@ export default function Info(props: PageProps<Extract<KcContext, { pageId: "info
           {!skipLink && (
             <div className="mt-6 text-center">
               {pageRedirectUri && (
-                <a href={pageRedirectUri} className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                <a href={pageRedirectUri} className="text-sm font-medium text-primary hover:text-primary/80">
                   {msg("backToApplication")}
                 </a>
               )}
               {actionUri && (
-                <a href={actionUri} className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                <a href={actionUri} className="text-sm font-medium text-primary hover:text-primary/80">
                   {msg("proceedWithAction")}
                 </a>
               )}
               {client.baseUrl && !pageRedirectUri && !actionUri && (
-                <a href={client.baseUrl} className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                <a href={client.baseUrl} className="text-sm font-medium text-primary hover:text-primary/80">
                   {msg("backToApplication")}
                 </a>
               )}
