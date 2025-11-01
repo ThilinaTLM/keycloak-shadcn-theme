@@ -7,6 +7,7 @@ import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle2, TriangleAlert, XCircle, Info } from "lucide-react";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
   const {
@@ -44,6 +45,10 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center py-6 sm:py-8 lg:py-12 px-2 sm:px-6 lg:px-8 bg-muted">
+      {/* Theme Toggle - Top Left */}
+      <div className="fixed left-5 top-5 z-50">
+        <ModeToggle />
+      </div>
       <div className="w-full sm:mx-auto sm:max-w-md">
         <h2 className="text-center text-2xl sm:text-3xl lg:text-4xl font-extrabold text-foreground uppercase">
           <img
