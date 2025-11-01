@@ -6,7 +6,50 @@
 [![Code Quality](https://github.com/ThilinaTLM/keycloak-shadcn-theme/actions/workflows/code-quality.yml/badge.svg)](https://github.com/ThilinaTLM/keycloak-shadcn-theme/actions/workflows/code-quality.yml)
 [![Release](https://github.com/ThilinaTLM/keycloak-shadcn-theme/actions/workflows/release.yml/badge.svg)](https://github.com/ThilinaTLM/keycloak-shadcn-theme/actions/workflows/release.yml)
 
+<div align="center">
+  <img src="docs/login-page.png" alt="Shadcn Keycloak Theme - Modern Login Page" width="700px">
+  <p><em>Transform your Keycloak authentication with modern design</em></p>
+  <p>
+    <a href="#-quick-demo">Try It Now</a> •
+    <a href="#-quick-start">Get Started</a> •
+    <a href="#-features">Features</a> •
+    <a href="#-deployment">Deployment</a>
+  </p>
+</div>
+
+---
+
 A modern, beautiful, and fully customizable Keycloak login theme built with [Keycloakify v11](https://www.keycloakify.dev/), [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [shadcn/ui](https://ui.shadcn.com/), and [Tailwind CSS v4](https://tailwindcss.com/). This theme provides a responsive, accessible, and internationalized user interface for all Keycloak authentication flows.
+
+## 📑 Table of Contents
+
+- [Why Use This Theme?](#-why-use-this-theme)
+- [Quick Demo](#-quick-demo)
+- [Use Cases](#-use-cases)
+- [Features](#-features)
+- [Screenshots](#-screenshots)
+- [Quick Start](#-quick-start)
+- [Development Guide](#%EF%B8%8F-development-guide)
+- [Deployment](#-deployment)
+- [Configuration](#-configuration)
+- [Testing](#-testing)
+- [Troubleshooting](#%EF%B8%8F-troubleshooting)
+- [Contributing](#-contributing)
+- [Roadmap](#%EF%B8%8F-roadmap)
+- [License](#-license)
+
+## 💡 Why Use This Theme?
+
+Keycloak's default login theme is functional but often feels outdated and doesn't match modern web application standards. This theme bridges that gap by providing:
+
+- **Modern Design Language**: Clean, contemporary UI that matches today's web applications, not enterprise software from 2010
+- **Developer-First Experience**: Built with React and TypeScript, making customization intuitive for modern web developers
+- **Production-Ready Components**: Leverages battle-tested shadcn/ui components and Tailwind CSS, eliminating the need to build UI from scratch
+- **Accessibility by Default**: WCAG-compliant components ensuring your authentication flows are usable by everyone
+- **Easy Maintenance**: Clear component structure and excellent tooling (Storybook, TypeScript) makes updates and customization straightforward
+- **Full Coverage**: Every authentication page is styled consistently - no half-finished themes or missing pages
+
+Whether you're building a SaaS platform, enterprise application, or consumer-facing product, your login experience is often the first impression users have. Make it count.
 
 ## ✨ Features
 
@@ -60,6 +103,52 @@ This theme supports **all essential Keycloak login pages**:
 - **ESLint + Prettier**: Code quality and consistent formatting
 - **Docker Compose**: Full development environment with one command
 - **Hot Reload**: Instant feedback during development
+
+## 📸 Screenshots
+
+### Login Page
+
+<img src="docs/login-page.png" alt="Modern Login Page with Social Providers" width="700px">
+
+Clean, modern login interface with support for multiple authentication providers including social logins (Google, Microsoft), featuring contemporary design with excellent spacing and typography.
+
+### Required Actions
+
+<img src="docs/require-actions.png" alt="Required Actions Page" width="700px">
+
+Clear, user-friendly messaging for required actions with intuitive call-to-action buttons and helpful guidance text.
+
+## 🚀 Quick Demo
+
+Want to see the theme in action without setting up Keycloak? Try it instantly with Storybook:
+
+```bash
+# Clone and preview in ~30 seconds
+npx degit ThilinaTLM/keycloak-shadcn-theme my-keycloak-theme
+cd my-keycloak-theme
+pnpm install
+pnpm storybook
+```
+
+This will open an interactive playground where you can explore all authentication pages, test different states, and see the theme in action at http://localhost:6006.
+
+## 🎯 Use Cases
+
+### Perfect For:
+
+- **SaaS Platforms**: Modern authentication that matches your application's design language
+- **Enterprise Applications**: Professional, accessible login flows that meet compliance requirements
+- **Customer-Facing Products**: Beautiful first impressions with branded authentication experiences
+- **Developer Teams**: React/TypeScript developers who want to customize without learning Freemarker templates
+- **Design-Conscious Projects**: Teams that care about UX/UI and want a modern alternative to default Keycloak themes
+
+### When to Choose This Theme:
+
+- You need a modern, professional login experience out of the box
+- Your team is comfortable with React and wants easy customization
+- You want to match your authentication UI with your application's design system
+- You need comprehensive coverage of all Keycloak authentication flows
+- You value developer experience and maintainability
 
 ## 🚀 Quick Start
 
