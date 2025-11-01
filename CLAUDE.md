@@ -18,6 +18,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Code Quality
 
 - `pnpm format` - Format code with Prettier
+- `pnpm lint:fix` - Fix ESLint issues
 
 ### Docker Environment
 

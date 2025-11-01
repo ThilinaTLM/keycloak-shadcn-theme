@@ -6,8 +6,6 @@ import { useInitialize } from "keycloakify/login/Template.useInitialize";
 import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Button } from "@/components/ui/button.tsx";
-import { ChevronLeft } from "lucide-react";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
   const {
@@ -81,17 +79,6 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
             </Select>
           </div>
         )}
-        <div className="fixed left-5 top-5">
-          <Button
-            variant="ghost"
-            onClick={() => {
-              window.history.back();
-            }}
-            className="p-0 h-fit w-fit transition-all duration-200 hover:scale-110 hover:-translate-x-1"
-          >
-            <ChevronLeft className="size-7" />
-          </Button>
-        </div>
       </div>
 
       <div className="mt-5 mx-0 sm:mx-auto w-full max-w-md">
