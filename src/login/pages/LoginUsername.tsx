@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Label } from "@/components/ui/label";
+import { ProviderIcon } from "../lib/providerIcons";
 
 export default function LoginUsername(props: PageProps<Extract<KcContext, { pageId: "login-username.ftl" }>, I18n>) {
   const { kcContext, i18n, Template } = props;
@@ -43,7 +44,7 @@ export default function LoginUsername(props: PageProps<Extract<KcContext, { page
                       className="flex items-center justify-center px-4 py-2 border border-border rounded-md shadow-sm text-sm font-medium text-foreground bg-card hover:bg-accent"
                       href={p.loginUrl}
                     >
-                      {p.iconClasses && <i className={`mr-2 ${p.iconClasses}`} aria-hidden="true"></i>}
+                      <ProviderIcon alias={p.alias} size={20} className="mr-2" />
                       <span dangerouslySetInnerHTML={{ __html: kcSanitize(p.displayName) }}></span>
                     </a>
                   </li>

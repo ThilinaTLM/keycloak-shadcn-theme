@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import { assert } from "keycloakify/tools/assert";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
@@ -7,7 +7,8 @@ import type { I18n } from "../i18n";
 import { Button } from "@/components/ui/button.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { Checkbox } from "@/components/ui/checkbox";
-import { RotateCcw, Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, RotateCcw } from "lucide-react";
+import { ProviderIcon } from "../lib/providerIcons";
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>) {
   const { kcContext, i18n, Template } = props;
@@ -32,10 +33,10 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
       socialProvidersNode={
         <>
           {realm.password && social?.providers !== undefined && social.providers.length !== 0 && (
-            <div id="kc-social-providers" className="mt-6">
-              <hr className="my-6" />
-              <h2 className="text-xl font-semibold mb-4">{msg("identity-provider-login-label")}</h2>
-              <ul className={`grid ${social.providers.length > 3 ? "grid-cols-2 gap-4" : "grid-cols-1 gap-2"}`}>
+            <div id="kc-social-providers" className="mt-2 w-full px-4 sm:px-6">
+              <hr className="my-0" />
+              <h2 className="text-base mt-2 mb-4 text-center">{msg("identity-provider-login-label")}</h2>
+              <ul className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-3">
                 {social.providers.map((p) => (
                   <li key={p.alias}>
                     <a
@@ -43,7 +44,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                       className="flex items-center justify-center px-4 py-2 border border-border rounded-md shadow-sm text-sm font-medium text-foreground bg-card hover:bg-accent"
                       href={p.loginUrl}
                     >
-                      {p.iconClasses && <i className={`mr-2 ${p.iconClasses}`} aria-hidden="true"></i>}
+                      <ProviderIcon alias={p.alias} size={20} className="mr-2" />
                       <span dangerouslySetInnerHTML={{ __html: kcSanitize(p.displayName) }}></span>
                     </a>
                   </li>

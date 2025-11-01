@@ -15,6 +15,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     displayRequiredFields = false,
     headerNode,
     infoNode = null,
+    socialProvidersNode = null,
     children,
     documentTitle,
     bodyClassName,
@@ -111,6 +112,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
             </div>
           )}
           {children}
+          {socialProvidersNode}
           {auth !== undefined && auth.showTryAnotherWayLink && (
             <form id="kc-select-try-another-way-form" action={url.loginAction} method="post" className="mt-4">
               <input type="hidden" name="tryAnotherWay" value="on" />

@@ -19,6 +19,7 @@
   "keywords": [],
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
+    "@icons-pack/react-simple-icons": "^13.8.0",
     "@tailwindcss/vite": "^4.1.16",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -29,6 +30,7 @@
     "keycloakify": "^11.11.1",
     "lucide-react": "^0.469.0",
     "next-themes": "^0.4.6",
+    "radix-ui": "latest",
     "react": "^18.3.1",
     "react-day-picker": "^9.11.1",
     "react-dom": "^18.3.1",
@@ -40,8 +42,7 @@
     "tailwindcss": "^4.1.16",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^1.1.2",
-    "zod": "^4.1.12",
-    "radix-ui": "latest"
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.0",
