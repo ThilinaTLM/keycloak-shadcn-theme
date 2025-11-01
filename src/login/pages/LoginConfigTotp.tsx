@@ -95,14 +95,7 @@ export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pa
               <Label htmlFor="totp" className="text-sm font-medium text-foreground">
                 {msg("authenticatorCode")} <span className="text-destructive">*</span>
               </Label>
-              <Input
-                type="text"
-                id="totp"
-                name="totp"
-                autoComplete="off"
-                className="h-10"
-                aria-invalid={messagesPerField.existsError("totp")}
-              />
+              <Input type="text" id="totp" name="totp" autoComplete="off" className="h-10" aria-invalid={messagesPerField.existsError("totp")} />
               {messagesPerField.existsError("totp") && (
                 <Alert variant="destructive">
                   <AlertDescription

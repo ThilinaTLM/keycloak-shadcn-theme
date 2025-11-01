@@ -151,12 +151,11 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
               <div className="flex items-center justify-between">
                 {realm.rememberMe && !usernameHidden && (
                   <div className="flex items-center space-x-2">
-                    <Checkbox
-                      id="rememberMe"
-                      name="rememberMe"
-                      defaultChecked={!!login.rememberMe}
-                    />
-                    <label htmlFor="rememberMe" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                    <Checkbox id="rememberMe" name="rememberMe" defaultChecked={!!login.rememberMe} />
+                    <label
+                      htmlFor="rememberMe"
+                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    >
                       {msg("rememberMe")}
                     </label>
                   </div>

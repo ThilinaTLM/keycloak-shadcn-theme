@@ -41,9 +41,9 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center py-12 sm:px-6 lg:px-8 bg-muted">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="text-center text-4xl font-extrabold text-foreground uppercase">
+    <div className="min-h-screen flex flex-col justify-center items-center py-6 sm:py-8 lg:py-12 px-2 sm:px-6 lg:px-8 bg-muted">
+      <div className="w-full sm:mx-auto sm:max-w-md">
+        <h2 className="text-center text-2xl sm:text-3xl lg:text-4xl font-extrabold text-foreground uppercase">
           <img
             src={`${import.meta.env.BASE_URL}${realm.name}.png`}
             width={500}
@@ -55,7 +55,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
           <div hidden>{msg("loginTitleHtml", realm.displayNameHtml)}</div>
         </h2>
         {enabledLanguages.length > 1 && (
-          <div className="fixed right-5 top-5">
+          <div className="mt-0 fixed right-5 top-5">
             <Select
               value={currentLanguage.languageTag}
               onValueChange={(value) => {
@@ -64,7 +64,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                 window.location.href = selected.href;
               }}
             >
-              <SelectTrigger className="w-[180px] bg-card">
+              <SelectTrigger className="min-w-[180px] bg-card">
                 <SelectValue placeholder="Select a locale" />
               </SelectTrigger>
               <SelectContent>
@@ -81,9 +81,9 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
         )}
       </div>
 
-      <div className="mt-5 mx-0 sm:mx-auto w-full max-w-md">
-        <div className="bg-card py-8 px-4 shadow sm:rounded-lg sm:px-6">
-          <h1 className="text-2xl font-normal text-foreground mb-6 text-center">{headerNode}</h1>
+      <div className="mt-4 sm:mt-5 w-full sm:mx-auto sm:max-w-md">
+        <div className="bg-card px-2 py-6 sm:px-6 sm:py-8 sm:shadow sm:rounded-lg md:shadow-md lg:shadow-lg flex flex-col items-center">
+          <h1 className="text-xl sm:text-2xl font-normal text-foreground mb-4 sm:mb-6 text-center">{headerNode}</h1>
           {displayRequiredFields && (
             <div className="text-sm text-muted-foreground mb-4">
               <span className="text-destructive">*</span> {msg("requiredFields")}
@@ -91,13 +91,13 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
           )}
           {displayMessage && message !== undefined && (message.type !== "warning" || !isAppInitiatedAction) && (
             <div
-              className={`mb-4 p-4 rounded-md ${message.type === "error" ? "bg-destructive/10 text-destructive" : message.type === "warning" ? "bg-warning/10 text-warning" : message.type === "info" ? "bg-info/10 text-info" : "bg-success/10 text-success"}`}
+              className={`mb-4 p-2 sm:p-4 rounded-md ${message.type === "error" ? "bg-destructive/10 text-destructive" : message.type === "warning" ? "bg-warning/10 text-warning" : message.type === "info" ? "bg-info/10 text-info" : "bg-success/10 text-success"}`}
             >
               <div className="flex">
                 <div className="shrink-0">
                   {message.type === "success" && (
                     <svg
-                      className="h-5 w-5 text-success"
+                      className="h-4 w-4 sm:h-5 sm:w-5 text-success"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -112,7 +112,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                   )}
                   {message.type === "warning" && (
                     <svg
-                      className="h-5 w-5 text-warning"
+                      className="h-4 w-4 sm:h-5 sm:w-5 text-warning"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -127,7 +127,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                   )}
                   {message.type === "error" && (
                     <svg
-                      className="h-5 w-5 text-destructive"
+                      className="h-4 w-4 sm:h-5 sm:w-5 text-destructive"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -141,7 +141,13 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     </svg>
                   )}
                   {message.type === "info" && (
-                    <svg className="h-5 w-5 text-info" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <svg
+                      className="h-4 w-4 sm:h-5 sm:w-5 text-info"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
                       <path
                         fillRule="evenodd"
                         d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
@@ -150,7 +156,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     </svg>
                   )}
                 </div>
-                <div className="ml-3">
+                <div className="ml-2 sm:ml-3">
                   <h3 className="text-sm font-medium">
                     {message.type === "error" ? "Error" : message.type === "warning" ? "Warning" : message.type === "info" ? "Info" : "Success"}
                   </h3>
