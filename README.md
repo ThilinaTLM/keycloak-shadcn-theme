@@ -112,6 +112,12 @@ This theme supports **all essential Keycloak login pages**:
 
 Clean, modern login interface with support for multiple authentication providers including social logins (Google, Microsoft), featuring contemporary design with excellent spacing and typography.
 
+### Registration Page
+
+<img src="docs/register-page.png" alt="Registration Page" width="700px">
+
+Streamlined registration form with clear field labels, validation, and consistent styling that matches the overall design system.
+
 ### Required Actions
 
 <img src="docs/require-actions.png" alt="Required Actions Page" width="700px">
@@ -152,14 +158,50 @@ This will open an interactive playground where you can explore all authenticatio
 
 ## 🚀 Quick Start
 
-### Prerequisites
+Choose your installation method based on your needs:
+
+### Option 1: Download Pre-built Theme (Recommended for Quick Deployment)
+
+The fastest way to use this theme is to download the pre-built JAR file:
+
+1. **Download the latest release:**
+
+   - Visit [GitHub Releases](https://github.com/ThilinaTLM/keycloak-shadcn-theme/releases)
+   - Download `shadcn-theme.jar` from the latest release
+
+2. **Install to Keycloak:**
+
+   ```bash
+   # Copy the JAR to your Keycloak providers directory
+   cp shadcn-theme.jar $KEYCLOAK_HOME/providers/
+   ```
+
+3. **Restart Keycloak:**
+
+   ```bash
+   # Restart your Keycloak instance to load the new theme
+   $KEYCLOAK_HOME/bin/kc.sh start
+   ```
+
+4. **Configure your realm:**
+   - Go to your realm's settings (Realm Settings → Themes)
+   - Set Login Theme to `shadcn-theme`
+   - Save changes
+
+That's it! Your Keycloak instance now uses the modern shadcn theme.
+
+### Option 2: Build from Source (For Customization & Development)
+
+If you want to customize the theme or contribute to development:
+
+#### Prerequisites
 
 - **Node.js**: ^18.0.0 || >=20.0.0
 - **pnpm**: Latest version (recommended package manager)
 - **Docker & Docker Compose**: For local Keycloak testing
 - **Java 17+**: Required for Keycloak theme building
 
-### Installation
+#### Installation Steps
 
 1. **Clone the repository:**
 
