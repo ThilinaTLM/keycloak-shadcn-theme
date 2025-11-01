@@ -7,6 +7,7 @@ import type { I18n } from "../i18n";
 import { Button } from "@/components/ui/button.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Separator } from "@/components/ui/separator";
 import { Eye, EyeOff, RotateCcw } from "lucide-react";
 import { ProviderIcon } from "../lib/providerIcons";
 
@@ -34,8 +35,11 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
         <>
           {realm.password && social?.providers !== undefined && social.providers.length !== 0 && (
             <div id="kc-social-providers" className="mt-2 w-full px-4 sm:px-6">
-              <hr className="my-0" />
-              <h2 className="text-base mt-2 mb-4 text-center">{msg("identity-provider-login-label")}</h2>
+              <div className="relative flex items-center mb-4">
+                <Separator className="flex-1" />
+                <span className="px-4 text-sm text-muted-foreground">{msg("identity-provider-login-label")}</span>
+                <Separator className="flex-1" />
+              </div>
               <ul className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-3">
                 {social.providers.map((p) => (
                   <li key={p.alias}>
