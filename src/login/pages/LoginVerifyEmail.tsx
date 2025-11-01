@@ -21,11 +21,11 @@ export default function LoginVerifyEmail(props: PageProps<Extract<KcContext, { p
             </Alert>
 
             {/* Secondary instructions with link */}
-            <div className="space-y-4 text-sm text-gray-600">
+            <div className="space-y-4 text-sm text-muted-foreground">
               <p>{msg("emailVerifyInstruction2")}</p>
 
               <p>
-                <a href={url.loginAction} className="text-indigo-600 hover:text-indigo-500 font-medium">
+                <a href={url.loginAction} className="text-primary hover:text-primary/80 font-medium">
                   {msg("doClickHere")}
                 </a>
                 &nbsp;

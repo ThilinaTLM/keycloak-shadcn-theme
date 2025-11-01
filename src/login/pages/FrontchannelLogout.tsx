@@ -30,7 +30,7 @@ export default function FrontchannelLogout(props: PageProps<Extract<KcContext, {
         {logout.clients.map((client) => (
           <li key={client.name}>
             {client.name}
-            <iframe src={client.frontChannelLogoutUrl} style={{ display: "none" }} />
+            <iframe src={client.frontChannelLogoutUrl} className="hidden" />
           </li>
         ))}
       </ul>

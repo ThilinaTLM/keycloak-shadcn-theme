@@ -23,7 +23,7 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
           <form id="kc-passwd-update-form" action={url.loginAction} method="post" className="space-y-6">
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="password-new" className="text-sm font-medium text-gray-700">
+                <Label htmlFor="password-new" className="text-sm font-medium text-foreground">
                   {msg("passwordNew")}
                 </Label>
                 <PasswordWrapper i18n={i18n} passwordInputId="password-new">
@@ -51,7 +51,7 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password-confirm" className="text-sm font-medium text-gray-700">
+                <Label htmlFor="password-confirm" className="text-sm font-medium text-foreground">
                   {msg("passwordConfirm")}
                 </Label>
                 <PasswordWrapper i18n={i18n} passwordInputId="password-confirm">
@@ -80,7 +80,7 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
               <div className="space-y-6">
                 <div className="flex items-center space-x-2">
                   <Checkbox id="logout-sessions" name="logout-sessions" defaultChecked={true} value="on" />
-                  <Label htmlFor="logout-sessions" className="text-sm text-gray-700">
+                  <Label htmlFor="logout-sessions" className="text-sm text-foreground">
                     {msg("logoutOtherSessions")}
                   </Label>
                 </div>
@@ -127,7 +127,7 @@ function PasswordWrapper(props: { i18n: I18n; passwordInputId: string; children:
         aria-label={msgStr(isPasswordRevealed ? "hidePassword" : "showPassword")}
         aria-controls={passwordInputId}
       >
-        {isPasswordRevealed ? <EyeOff className="h-4 w-4 text-gray-500" /> : <Eye className="h-4 w-4 text-gray-500" />}
+        {isPasswordRevealed ? <EyeOff className="h-4 w-4 text-muted-foreground" /> : <Eye className="h-4 w-4 text-muted-foreground" />}
       </Button>
     </div>
   );

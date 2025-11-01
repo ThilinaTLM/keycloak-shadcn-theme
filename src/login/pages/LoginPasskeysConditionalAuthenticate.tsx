@@ -54,7 +54,7 @@ export default function LoginPasskeysConditionalAuthenticate(
         <input type="hidden" id="error" name="error" />
       </form>
 
-      <div className={kcClsx("kcFormGroupClass")} style={{ marginBottom: 0 }}>
+      <div className={clsx(kcClsx("kcFormGroupClass"), "mb-0")}>
         {authenticators !== undefined && Object.keys(authenticators).length !== 0 && (
           <>
             <form id="authn_select" className={kcClsx("kcFormClass")}>
@@ -118,7 +118,7 @@ export default function LoginPasskeysConditionalAuthenticate(
                 id="kc-form-login"
                 action={url.loginAction}
                 method="post"
-                style={{ display: "none" }}
+                className="hidden"
                 onSubmit={(event) => {
                   try {
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -156,7 +156,7 @@ export default function LoginPasskeysConditionalAuthenticate(
                 )}
               </form>
             )}
-            <div id="kc-form-passkey-button" className={kcClsx("kcFormButtonsClass")} style={{ display: "none" }}>
+            <div id="kc-form-passkey-button" className={clsx(kcClsx("kcFormButtonsClass"), "hidden")}>
               <input
                 id={authButtonId}
                 type="button"

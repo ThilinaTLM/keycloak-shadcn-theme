@@ -24,7 +24,7 @@ export default function Error(props: PageProps<Extract<KcContext, { pageId: "err
           </Alert>
           {!skipLink && client?.baseUrl && (
             <div className="mt-6 text-center">
-              <a id="backToApplication" href={client.baseUrl} className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+              <a id="backToApplication" href={client.baseUrl} className="text-sm font-medium text-primary hover:text-primary/80">
                 {msg("backToApplication")}
               </a>
             </div>

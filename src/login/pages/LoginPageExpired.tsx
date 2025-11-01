@@ -18,14 +18,14 @@ export default function LoginPageExpired(props: PageProps<Extract<KcContext, { p
             <AlertDescription className="space-y-4">
               <p>
                 {msg("pageExpiredMsg1")}{" "}
-                <a href={url.loginRestartFlowUrl} id="loginRestartLink" className="font-medium text-indigo-600 hover:text-indigo-500">
+                <a href={url.loginRestartFlowUrl} id="loginRestartLink" className="font-medium text-primary hover:text-primary/80">
                   {msg("doClickHere")}
                 </a>
                 .
               </p>
               <p>
                 {msg("pageExpiredMsg2")}{" "}
-                <a href={url.loginAction} id="loginContinueLink" className="font-medium text-indigo-600 hover:text-indigo-500">
+                <a href={url.loginAction} id="loginContinueLink" className="font-medium text-primary hover:text-primary/80">
                   {msg("doClickHere")}
                 </a>
                 .

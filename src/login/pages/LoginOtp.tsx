@@ -21,7 +21,7 @@ export default function LoginOtp(props: PageProps<Extract<KcContext, { pageId: "
           <form id="kc-otp-login-form" className="space-y-6" action={url.loginAction} method="post">
             {otpLogin.userOtpCredentials.length > 1 && (
               <div className="space-y-4">
-                <Label className="text-sm font-medium text-gray-700">{msg("loginOtpOneTime")}</Label>
+                <Label className="text-sm font-medium text-foreground">{msg("loginOtpOneTime")}</Label>
                 <RadioGroup defaultValue={otpLogin.selectedCredentialId} name="selectedCredentialId" className="grid gap-4">
                   {otpLogin.userOtpCredentials.map((otpCredential, index) => (
                     <div key={index} className="flex items-center space-x-2">
@@ -39,7 +39,7 @@ export default function LoginOtp(props: PageProps<Extract<KcContext, { pageId: "
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="otp" className="text-sm font-medium text-gray-700">
+              <Label htmlFor="otp" className="text-sm font-medium text-foreground">
                 {msg("loginOtpOneTime")}
               </Label>
               <Input

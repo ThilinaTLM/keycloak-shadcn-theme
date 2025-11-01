@@ -61,7 +61,7 @@ export default function LoginPassword(props: PageProps<Extract<KcContext, { page
             <div className="space-y-4">
               <div className="flex justify-end">
                 {realm.resetPasswordAllowed && (
-                  <a className="text-sm font-medium text-indigo-600 hover:text-indigo-500" tabIndex={5} href={url.loginResetCredentialsUrl}>
+                  <a className="text-sm font-medium text-primary hover:text-primary/80" tabIndex={5} href={url.loginResetCredentialsUrl}>
                     {msg("doForgotPassword")}
                   </a>
                 )}
@@ -100,7 +100,7 @@ function PasswordWrapper(props: { i18n: I18n; passwordInputId: string; children:
         onClick={toggleIsPasswordRevealed}
       >
         <svg
-          className={`h-5 w-5 text-gray-400 ${isPasswordRevealed ? "hidden" : "block"}`}
+          className={`h-5 w-5 text-muted-foreground ${isPasswordRevealed ? "hidden" : "block"}`}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
@@ -114,7 +114,7 @@ function PasswordWrapper(props: { i18n: I18n; passwordInputId: string; children:
           />
         </svg>
         <svg
-          className={`h-5 w-5 text-gray-400 ${isPasswordRevealed ? "block" : "hidden"}`}
+          className={`h-5 w-5 text-muted-foreground ${isPasswordRevealed ? "block" : "hidden"}`}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"

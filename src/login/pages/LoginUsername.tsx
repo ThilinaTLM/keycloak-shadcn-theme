@@ -23,7 +23,7 @@ export default function LoginUsername(props: PageProps<Extract<KcContext, { page
       infoNode={
         <span>
           {msg("noAccount")}{" "}
-          <a className="text-blue-600 hover:underline" tabIndex={6} href={url.registrationUrl}>
+          <a className="text-primary hover:underline" tabIndex={6} href={url.registrationUrl}>
             {msg("doRegister")}
           </a>
         </span>
@@ -40,7 +40,7 @@ export default function LoginUsername(props: PageProps<Extract<KcContext, { page
                   <li key={p.alias}>
                     <a
                       id={`social-${p.alias}`}
-                      className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+                      className="flex items-center justify-center px-4 py-2 border border-border rounded-md shadow-sm text-sm font-medium text-foreground bg-card hover:bg-accent"
                       href={p.loginUrl}
                     >
                       {p.iconClasses && <i className={`mr-2 ${p.iconClasses}`} aria-hidden="true"></i>}

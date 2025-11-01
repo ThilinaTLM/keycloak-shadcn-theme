@@ -60,14 +60,14 @@ export default function UserProfileFormFields(props: UserProfileFormFieldsProps<
             }}
           >
             <div className="space-y-1">
-              <Label htmlFor={attribute.name} className="text-sm font-medium text-gray-700">
+              <Label htmlFor={attribute.name} className="text-sm font-medium text-foreground">
                 {advancedMsg(attribute.displayName ?? "")}
-                {attribute.required && <span className="text-red-500 ml-1">*</span>}
+                {attribute.required && <span className="text-destructive ml-1">*</span>}
               </Label>
 
               <div className="space-y-2">
                 {attribute.annotations.inputHelperTextBefore && (
-                  <p className="text-sm text-gray-500" id={`form-help-text-before-${attribute.name}`}>
+                  <p className="text-sm text-muted-foreground" id={`form-help-text-before-${attribute.name}`}>
                     {advancedMsg(attribute.annotations.inputHelperTextBefore)}
                   </p>
                 )}
@@ -83,7 +83,7 @@ export default function UserProfileFormFields(props: UserProfileFormFieldsProps<
                 <FieldErrors attribute={attribute} displayableErrors={displayableErrors} fieldIndex={undefined} />
 
                 {attribute.annotations.inputHelperTextAfter && (
-                  <p className="text-sm text-gray-500" id={`form-help-text-after-${attribute.name}`}>
+                  <p className="text-sm text-muted-foreground" id={`form-help-text-after-${attribute.name}`}>
                     {advancedMsg(attribute.annotations.inputHelperTextAfter)}
                   </p>
                 )}
@@ -128,7 +128,7 @@ function GroupLabel(props: { attribute: Attribute; groupNameRef: { current: stri
 
             return (
               <div className="mb-2">
-                <h2 id={`header-${attribute.group.name}`} className="text-lg font-semibold text-gray-900">
+                <h2 id={`header-${attribute.group.name}`} className="text-lg font-semibold text-foreground">
                   {groupHeaderText}
                 </h2>
               </div>
@@ -141,7 +141,7 @@ function GroupLabel(props: { attribute: Attribute; groupNameRef: { current: stri
               const groupDescriptionText = advancedMsg(groupDisplayDescription);
 
               return (
-                <p id={`description-${attribute.group.name}`} className="text-sm text-gray-500">
+                <p id={`description-${attribute.group.name}`} className="text-sm text-muted-foreground">
                   {groupDescriptionText}
                 </p>
               );
@@ -226,7 +226,7 @@ function PasswordWrapper(props: { i18n: I18n; passwordInputId: string; children:
         aria-label={msgStr(isPasswordRevealed ? "hidePassword" : "showPassword")}
         aria-controls={passwordInputId}
       >
-        {isPasswordRevealed ? <EyeOff className="h-4 w-4 text-gray-500" /> : <Eye className="h-4 w-4 text-gray-500" />}
+        {isPasswordRevealed ? <EyeOff className="h-4 w-4 text-muted-foreground" /> : <Eye className="h-4 w-4 text-muted-foreground" />}
       </Button>
     </div>
   );
@@ -407,7 +407,7 @@ function InputTagSelects(props: InputFieldByTypeProps) {
         {options.map((option) => (
           <div key={option} className="flex items-center space-x-2">
             <RadioGroupItem value={option} id={`${attribute.name}-${option}`} />
-            <Label htmlFor={`${attribute.name}-${option}`} className={`text-sm ${attribute.readOnly ? "text-gray-500" : "text-gray-900"}`}>
+            <Label htmlFor={`${attribute.name}-${option}`} className={`text-sm ${attribute.readOnly ? "text-muted-foreground" : "text-foreground"}`}>
               {inputLabel(i18n, attribute, option)}
             </Label>
           </div>
@@ -450,7 +450,7 @@ function InputTagSelects(props: InputFieldByTypeProps) {
               })
             }
           />
-          <Label htmlFor={`${attribute.name}-${option}`} className={`text-sm ${attribute.readOnly ? "text-gray-500" : "text-gray-900"}`}>
+          <Label htmlFor={`${attribute.name}-${option}`} className={`text-sm ${attribute.readOnly ? "text-muted-foreground" : "text-foreground"}`}>
             {inputLabel(i18n, attribute, option)}
           </Label>
         </div>

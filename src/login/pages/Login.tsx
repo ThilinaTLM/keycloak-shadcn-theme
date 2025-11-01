@@ -23,7 +23,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
       infoNode={
         <span>
           {msg("noAccount")}{" "}
-          <a className="text-blue-600 hover:underline" tabIndex={8} href={url.registrationUrl}>
+          <a className="text-primary hover:underline" tabIndex={8} href={url.registrationUrl}>
             {msg("doRegister")}
           </a>
         </span>
@@ -39,7 +39,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                   <li key={p.alias}>
                     <a
                       id={`social-${p.alias}`}
-                      className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+                      className="flex items-center justify-center px-4 py-2 border border-border rounded-md shadow-sm text-sm font-medium text-foreground bg-card hover:bg-accent"
                       href={p.loginUrl}
                     >
                       {p.iconClasses && <i className={`mr-2 ${p.iconClasses}`} aria-hidden="true"></i>}
@@ -67,7 +67,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
             >
               {!usernameHidden && (
                 <div>
-                  <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="username" className="block text-sm font-medium text-foreground">
                     {!realm.loginWithEmailAllowed ? msg("username") : !realm.registrationEmailAsUsername ? msg("usernameOrEmail") : msg("email")}
                   </label>
                   <div className="mt-1">
@@ -84,7 +84,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                     />
                   </div>
                   {messagesPerField.existsError("username", "password") && (
-                    <p className="mt-2 text-sm text-red-600" id="input-error" aria-live="polite">
+                    <p className="mt-2 text-sm text-destructive" id="input-error" aria-live="polite">
                       <span
                         dangerouslySetInnerHTML={{
                           __html: kcSanitize(messagesPerField.getFirstError("username", "password"))
@@ -97,7 +97,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
 
               {usernameHidden && auth.showUsername && (
                 <div>
-                  <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="username" className="block text-sm font-medium text-foreground">
                     {!realm.loginWithEmailAllowed ? msg("username") : !realm.registrationEmailAsUsername ? msg("usernameOrEmail") : msg("email")}
                   </label>
                   <div className="mt-1 relative">
@@ -108,11 +108,11 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                       defaultValue={auth.attemptedUsername ?? ""}
                       type="text"
                       disabled
-                      className="h-10 bg-gray-100 pr-10"
+                      className="h-10 bg-muted pr-10"
                     />
                     <a
                       href={url.loginRestartFlowUrl}
-                      className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                      className="absolute right-2 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
                       title={msgStr("restartLoginTooltip")}
                     >
                       <RotateCcw size={16} />
@@ -122,7 +122,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
               )}
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="password" className="block text-sm font-medium text-foreground">
                   {msg("password")}
                 </label>
                 <PasswordWrapper i18n={i18n} passwordInputId="password">
@@ -137,7 +137,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                   />
                 </PasswordWrapper>
                 {usernameHidden && messagesPerField.existsError("username", "password") && (
-                  <p className="mt-2 text-sm text-red-600" id="input-error" aria-live="polite">
+                  <p className="mt-2 text-sm text-destructive" id="input-error" aria-live="polite">
                     <span
                       dangerouslySetInnerHTML={{
                         __html: kcSanitize(messagesPerField.getFirstError("username", "password"))
@@ -155,17 +155,17 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                       id="rememberMe"
                       name="rememberMe"
                       type="checkbox"
-                      className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                      className="h-4 w-4 text-primary focus:ring-primary border-border rounded"
                       defaultChecked={!!login.rememberMe}
                     />
-                    <label htmlFor="rememberMe" className="ml-2 block text-sm text-gray-900">
+                    <label htmlFor="rememberMe" className="ml-2 block text-sm text-foreground">
                       {msg("rememberMe")}
                     </label>
                   </div>
                 )}
                 {realm.resetPasswordAllowed && (
                   <div className="text-sm">
-                    <a tabIndex={6} href={url.loginResetCredentialsUrl} className="font-medium text-indigo-600 hover:text-indigo-500">
+                    <a tabIndex={6} href={url.loginResetCredentialsUrl} className="font-medium text-primary hover:text-primary/80">
                       {msg("doForgotPassword")}
                     </a>
                   </div>
@@ -212,7 +212,7 @@ function PasswordWrapper(props: { i18n: I18n; passwordInputId: string; children:
         onClick={toggleIsPasswordRevealed}
       >
         <svg
-          className={`h-5 w-5 text-gray-400 ${isPasswordRevealed ? "hidden" : "block"}`}
+          className={`h-5 w-5 text-muted-foreground ${isPasswordRevealed ? "hidden" : "block"}`}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
@@ -226,7 +226,7 @@ function PasswordWrapper(props: { i18n: I18n; passwordInputId: string; children:
           />
         </svg>
         <svg
-          className={`h-5 w-5 text-gray-400 ${isPasswordRevealed ? "block" : "hidden"}`}
+          className={`h-5 w-5 text-muted-foreground ${isPasswordRevealed ? "block" : "hidden"}`}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"

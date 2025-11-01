@@ -33,7 +33,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
   useSetClassName({
     qualifiedName: "body",
-    className: bodyClassName ?? "bg-gray-100"
+    className: bodyClassName ?? "bg-muted"
   });
 
   const { isReadyToRender } = useInitialize({ kcContext, doUseDefaultCss: false });
@@ -43,9 +43,9 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center py-12 sm:px-6 lg:px-8 bg-gray-100">
+    <div className="min-h-screen flex flex-col justify-center items-center py-12 sm:px-6 lg:px-8 bg-muted">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="text-center text-4xl font-extrabold text-gray-900 uppercase">
+        <h2 className="text-center text-4xl font-extrabold text-foreground uppercase">
           <img
             src={`${import.meta.env.BASE_URL}${realm.name}.png`}
             width={500}
@@ -66,7 +66,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                 window.location.href = selected.href;
               }}
             >
-              <SelectTrigger className="w-[180px] bg-white">
+              <SelectTrigger className="w-[180px] bg-card">
                 <SelectValue placeholder="Select a locale" />
               </SelectTrigger>
               <SelectContent>
@@ -89,28 +89,28 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
             }}
             className="p-0 h-fit w-fit transition-all duration-200 hover:scale-110 hover:-translate-x-1"
           >
-            <ChevronLeft style={{ width: "27px", height: "27px" }} />
+            <ChevronLeft className="size-7" />
           </Button>
         </div>
       </div>
 
       <div className="mt-5 mx-0 sm:mx-auto w-full max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-6">
-          <h1 className="text-2xl font-normal text-gray-900 mb-6 text-center">{headerNode}</h1>
+        <div className="bg-card py-8 px-4 shadow sm:rounded-lg sm:px-6">
+          <h1 className="text-2xl font-normal text-foreground mb-6 text-center">{headerNode}</h1>
           {displayRequiredFields && (
-            <div className="text-sm text-gray-500 mb-4">
-              <span className="text-red-500">*</span> {msg("requiredFields")}
+            <div className="text-sm text-muted-foreground mb-4">
+              <span className="text-destructive">*</span> {msg("requiredFields")}
             </div>
           )}
           {displayMessage && message !== undefined && (message.type !== "warning" || !isAppInitiatedAction) && (
             <div
-              className={`mb-4 p-4 rounded-md ${message.type === "error" ? "bg-red-50 text-red-700" : message.type === "warning" ? "bg-yellow-50 text-yellow-700" : message.type === "info" ? "bg-blue-50 text-blue-700" : "bg-green-50 text-green-700"}`}
+              className={`mb-4 p-4 rounded-md ${message.type === "error" ? "bg-destructive/10 text-destructive" : message.type === "warning" ? "bg-warning/10 text-warning" : message.type === "info" ? "bg-info/10 text-info" : "bg-success/10 text-success"}`}
             >
               <div className="flex">
                 <div className="shrink-0">
                   {message.type === "success" && (
                     <svg
-                      className="h-5 w-5 text-green-400"
+                      className="h-5 w-5 text-success"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -125,7 +125,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                   )}
                   {message.type === "warning" && (
                     <svg
-                      className="h-5 w-5 text-yellow-400"
+                      className="h-5 w-5 text-warning"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -140,7 +140,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                   )}
                   {message.type === "error" && (
                     <svg
-                      className="h-5 w-5 text-red-400"
+                      className="h-5 w-5 text-destructive"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -154,13 +154,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     </svg>
                   )}
                   {message.type === "info" && (
-                    <svg
-                      className="h-5 w-5 text-blue-400"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
+                    <svg className="h-5 w-5 text-info" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path
                         fillRule="evenodd"
                         d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
@@ -189,7 +183,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                   document.forms["kc-select-try-another-way-form" as never].submit();
                   return false;
                 }}
-                className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                className="text-sm font-medium text-primary hover:text-primary/80"
               >
                 {msg("doTryAnotherWay")}
               </a>

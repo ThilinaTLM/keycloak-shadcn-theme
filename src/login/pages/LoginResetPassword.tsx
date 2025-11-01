@@ -25,7 +25,7 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
           <form id="kc-reset-password-form" className="space-y-6" action={url.loginAction} method="post">
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                <Label htmlFor="username" className="block text-sm font-medium text-foreground">
                   {!realm.loginWithEmailAllowed ? msg("username") : !realm.registrationEmailAsUsername ? msg("usernameOrEmail") : msg("email")}
                 </Label>
                 <Input
@@ -52,7 +52,7 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
 
               <div className="flex flex-col space-y-4">
                 <div className="flex items-center justify-between">
-                  <a href={url.loginUrl} className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                  <a href={url.loginUrl} className="text-sm font-medium text-primary hover:text-primary/80">
                     {msg("backToLogin")}
                   </a>
                 </div>
