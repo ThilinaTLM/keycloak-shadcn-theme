@@ -13,7 +13,7 @@
     <a href="#-quick-demo">Try It Now</a> •
     <a href="#-quick-start">Get Started</a> •
     <a href="#-features">Features</a> •
-    <a href="#-deployment">Deployment</a>
+    <a href="DEVELOPMENT.md">Developer Guide</a>
   </p>
 </div>
 
@@ -29,12 +29,8 @@ A modern, beautiful, and fully customizable Keycloak login theme built with [Key
 - [Features](#-features)
 - [Screenshots](#-screenshots)
 - [Quick Start](#-quick-start)
-- [Development Guide](#%EF%B8%8F-development-guide)
-- [Deployment](#-deployment)
-- [Configuration](#-configuration)
-- [Testing](#-testing)
-- [Troubleshooting](#%EF%B8%8F-troubleshooting)
-- [Contributing](#-contributing)
+- [Activating the Theme](#-activating-the-theme)
+- [Developer Guide](#-developer-guide)
 - [Roadmap](#%EF%B8%8F-roadmap)
 - [License](#-license)
 
@@ -50,6 +46,38 @@ Keycloak's default login theme is functional but often feels outdated and doesn'
 - **Full Coverage**: Every authentication page is styled consistently - no half-finished themes or missing pages
 
 Whether you're building a SaaS platform, enterprise application, or consumer-facing product, your login experience is often the first impression users have. Make it count.
+
+## 🚀 Quick Demo
+
+Want to see the theme in action without setting up Keycloak? Try it instantly with Storybook:
+
+```bash
+# Clone and preview in ~30 seconds
+npx degit ThilinaTLM/keycloak-shadcn-theme my-keycloak-theme
+cd my-keycloak-theme
+pnpm install
+pnpm storybook
+```
+
+This will open an interactive playground where you can explore all authentication pages, test different states, and see the theme in action at http://localhost:6006.
+
+## 🎯 Use Cases
+
+### Perfect For:
+
+- **SaaS Platforms**: Modern authentication that matches your application's design language
+- **Enterprise Applications**: Professional, accessible login flows that meet compliance requirements
+- **Customer-Facing Products**: Beautiful first impressions with branded authentication experiences
+- **Developer Teams**: React/TypeScript developers who want to customize without learning Freemarker templates
+- **Design-Conscious Projects**: Teams that care about UX/UI and want a modern alternative to default Keycloak themes
+
+### When to Choose This Theme:
+
+- You need a modern, professional login experience out of the box
+- Your team is comfortable with React and wants easy customization
+- You want to match your authentication UI with your application's design system
+- You need comprehensive coverage of all Keycloak authentication flows
+- You value developer experience and maintainability
 
 ## ✨ Features
 
@@ -124,401 +152,81 @@ Streamlined registration form with clear field labels, validation, and consisten
 
 Clear, user-friendly messaging for required actions with intuitive call-to-action buttons and helpful guidance text.
 
-## 🚀 Quick Demo
-
-Want to see the theme in action without setting up Keycloak? Try it instantly with Storybook:
-
-```bash
-# Clone and preview in ~30 seconds
-npx degit ThilinaTLM/keycloak-shadcn-theme my-keycloak-theme
-cd my-keycloak-theme
-pnpm install
-pnpm storybook
-```
-
-This will open an interactive playground where you can explore all authentication pages, test different states, and see the theme in action at http://localhost:6006.
-
-## 🎯 Use Cases
-
-### Perfect For:
-
-- **SaaS Platforms**: Modern authentication that matches your application's design language
-- **Enterprise Applications**: Professional, accessible login flows that meet compliance requirements
-- **Customer-Facing Products**: Beautiful first impressions with branded authentication experiences
-- **Developer Teams**: React/TypeScript developers who want to customize without learning Freemarker templates
-- **Design-Conscious Projects**: Teams that care about UX/UI and want a modern alternative to default Keycloak themes
-
-### When to Choose This Theme:
-
-- You need a modern, professional login experience out of the box
-- Your team is comfortable with React and wants easy customization
-- You want to match your authentication UI with your application's design system
-- You need comprehensive coverage of all Keycloak authentication flows
-- You value developer experience and maintainability
-
 ## 🚀 Quick Start
 
-Choose your installation method based on your needs:
+Get up and running with the Shadcn Keycloak Theme in minutes.
 
-### Option 1: Download Pre-built Theme (Recommended for Quick Deployment)
+### 1. Download the Pre-built Theme
 
-The fastest way to use this theme is to download the pre-built JAR file:
+Visit the [GitHub Releases](https://github.com/ThilinaTLM/keycloak-shadcn-theme/releases) page and download `shadcn-theme.jar` from the latest release.
 
-1. **Download the latest release:**
+### 2. Install to Keycloak
 
-   - Visit [GitHub Releases](https://github.com/ThilinaTLM/keycloak-shadcn-theme/releases)
-   - Download `shadcn-theme.jar` from the latest release
-
-2. **Install to Keycloak:**
-
-   ```bash
-   # Copy the JAR to your Keycloak providers directory
-   cp shadcn-theme.jar $KEYCLOAK_HOME/providers/
-   ```
-
-3. **Restart Keycloak:**
-
-   ```bash
-   # Restart your Keycloak instance to load the new theme
-   $KEYCLOAK_HOME/bin/kc.sh start
-   ```
-
-4. **Configure your realm:**
-   - Go to your realm's settings (Realm Settings → Themes)
-   - Set Login Theme to `shadcn-theme`
-   - Save changes
-
-That's it! Your Keycloak instance now uses the modern shadcn theme.
-
-### Option 2: Build from Source (For Customization & Development)
-
-If you want to customize the theme or contribute to development:
-
-#### Prerequisites
-
-- **Node.js**: ^18.0.0 || >=20.0.0
-- **pnpm**: Latest version (recommended package manager)
-- **Docker & Docker Compose**: For local Keycloak testing
-- **Java 17+**: Required for Keycloak theme building
-
-#### Installation Steps
-
-1. **Clone the repository:**
+Copy the JAR file to your Keycloak providers directory:
 
 ```bash
-git clone https://github.com/ThilinaTLM/keycloak-shadcn-theme.git
-cd keycloak-shadcn-theme
+cp shadcn-theme.jar $KEYCLOAK_HOME/providers/
 ```
 
-2. **Install dependencies:**
-
-```bash
-pnpm install
-```
-
-3. **Start development environment:**
-
-```bash
-# Option 1: Component development with Storybook
-pnpm storybook
-
-# Option 2: Vite development server
-pnpm dev
-
-# Option 3: Full Keycloak environment
-docker compose up -d
-```
-
-4. **Build the theme:**
-
-```bash
-pnpm build-keycloak-theme
-```
-
-The built theme will be available as `dist_keycloak/shadcn-theme.jar`.
-
-## 🏗️ Development Guide
-
-### Project Architecture
-
-```
-src/
-├── components/ui/          # shadcn/ui components
-├── login/                  # Keycloak theme implementation
-│   ├── pages/             # Individual page components
-│   ├── assets/            # Fonts, images, and static assets
-│   ├── KcPage.tsx         # Main page router
-│   ├── Template.tsx       # Base template wrapper
-│   └── i18n.ts           # Internationalization setup
-├── lib/                   # Utility functions
-└── global.css            # Global styles and Tailwind imports
-```
-
-### Available Scripts
-
-| Command                     | Description                                         |
-| --------------------------- | --------------------------------------------------- |
-| `pnpm dev`                  | Start Vite development server for component testing |
-| `pnpm build`                | Build TypeScript and bundle assets                  |
-| `pnpm build-keycloak-theme` | Build complete Keycloak theme JAR                   |
-| `pnpm storybook`            | Start Storybook for component development           |
-| `pnpm format`               | Format code with Prettier                           |
-
-### Component Development Workflow
-
-1. **Develop in Isolation**: Use Storybook to develop and test individual pages
-2. **Test Integrations**: Use the Docker environment to test complete flows
-3. **Build & Deploy**: Generate the JAR file for production deployment
-
-#### Working with Individual Pages
-
-Each login page has two files:
-
-- `PageName.tsx` - The React component implementation
-- `PageName.stories.tsx` - Storybook story for isolated development
-
-**Example: Creating a new page**
-
-```typescript
-// src/login/pages/MyNewPage.tsx
-import type { PageProps } from "keycloakify/login";
-import { KcPage } from "../KcPage";
-
-export default function MyNewPage(props: PageProps<Extract<KcPage, "my-new-page.ftl">>) {
-  // Implementation
-}
-
-// src/login/pages/MyNewPage.stories.tsx
-import type { Meta, StoryObj } from "@storybook/react";
-import { createKcPageStory } from "../KcPageStory";
-
-const { KcPageStory } = createKcPageStory({ pageId: "my-new-page.ftl" });
-
-const meta = {
-  title: "login/MyNewPage",
-  component: KcPageStory
-} satisfies Meta<typeof KcPageStory>;
-
-export default meta;
-```
-
-### Docker Development Environment
-
-The project includes a complete Docker Compose setup:
-
-```bash
-# Start all services
-docker compose up -d
-
-# View logs
-docker compose logs -f
-
-# Stop services
-docker compose down
-```
-
-**Services included:**
-
-- **Keycloak**: Available at http://localhost:8090
-- **PostgreSQL**: Database backend
-- **Pre-configured realm**: Ready-to-use test environment
-
-**Default credentials:**
-
-- Admin: `admin` / `admin`
-- Test user: `test` / `test`
-
-### Theme Customization
-
-#### Adding New shadcn/ui Components
-
-```bash
-# Example: Add a new component
-npx shadcn@latest add tooltip
-```
-
-Components are automatically configured with the project's Tailwind setup.
-
-#### Customizing Styles
-
-1. **Global styles**: Edit `src/global.css`
-2. **Component styles**: Use Tailwind classes and CSS variables
-3. **Theme colors**: Modify CSS custom properties in `global.css`
-
-#### Font Customization
-
-The theme uses the Geist font family. To change fonts:
-
-1. Add font files to `src/login/assets/fonts/`
-2. Update font CSS in `src/login/assets/fonts/[font-name]/index.css`
-3. Import in `src/global.css`
-
-## 📦 Deployment
-
-### Building for Production
-
-```bash
-# Build the complete theme
-pnpm build-keycloak-theme
-
-# The JAR file will be created at:
-# dist_keycloak/shadcn-theme.jar
-```
-
-### Keycloak Installation
-
-1. **Copy the JAR file** to your Keycloak providers directory:
-
-```bash
-cp dist_keycloak/shadcn-theme.jar $KEYCLOAK_HOME/providers/
-```
-
-2. **Restart Keycloak** to load the new theme
-
-3. **Configure your realm** to use the `shadcn-theme`:
-   - Go to Realm Settings → Themes
-   - Set Login Theme to `shadcn-theme`
-
-### Docker Deployment
+For Docker deployments, you can mount the JAR file:
 
 ```dockerfile
 FROM quay.io/keycloak/keycloak:latest
-COPY dist_keycloak/shadcn-theme.jar /opt/keycloak/providers/
+COPY shadcn-theme.jar /opt/keycloak/providers/
 RUN /opt/keycloak/bin/kc.sh build
 ```
 
-## 🔧 Configuration
+### 3. Restart Keycloak
 
-### Keycloak Version Compatibility
-
-The theme is built for Keycloak versions 22-25+ and is configured in `vite.config.ts`:
-
-```typescript
-keycloakify({
-  keycloakVersionTargets: {
-    "all-other-versions": "shadcn-theme.jar",
-    "22-to-25": false
-  },
-  themeName: "shadcn-theme",
-  themeVersion: "1.0.0"
-});
-```
-
-### Environment Variables
-
-| Variable                  | Description    | Default                                    |
-| ------------------------- | -------------- | ------------------------------------------ |
-| `KEYCLOAK_ADMIN`          | Admin username | `admin`                                    |
-| `KEYCLOAK_ADMIN_PASSWORD` | Admin password | `admin`                                    |
-| `KC_DB_URL`               | Database URL   | `jdbc:postgresql://postgres:5432/keycloak` |
-
-### Customizing Messages
-
-1. **Add new language**: Create `messages_[locale].properties` in the generated theme
-2. **Override existing messages**: Modify message files during build
-3. **Custom messages**: Extend `src/login/i18n.ts`
-
-## 🧪 Testing
-
-### Storybook Testing
+Restart your Keycloak instance to load the new theme:
 
 ```bash
-# Start Storybook
-pnpm storybook
-
-# Visit http://localhost:6006
+$KEYCLOAK_HOME/bin/kc.sh start
 ```
 
-Each page component has comprehensive stories covering:
-
-- Default states
-- Error conditions
-- Different form configurations
-- Various message scenarios
-
-### Integration Testing
-
-Use the Docker environment to test complete authentication flows:
-
-1. Start the environment: `docker compose up -d`
-2. Navigate to http://localhost:8090
-3. Test various authentication scenarios
-4. Check theme rendering across different pages
-
-## 🛠️ Troubleshooting
-
-### Common Issues
-
-**Build Failures:**
+Or with Docker:
 
 ```bash
-# Clear all caches and rebuild
-rm -rf node_modules dist dist_keycloak
-pnpm install
-pnpm build-keycloak-theme
+docker restart <keycloak-container>
 ```
 
-**Docker Issues:**
+## 🎨 Activating the Theme
 
-```bash
-# Reset Docker environment
-docker compose down -v
-docker compose up -d
-```
+After installation, configure your realm to use the new theme:
 
-**Theme Not Loading:**
+1. **Log in to Keycloak Admin Console**
 
-- Verify JAR file is in correct Keycloak providers directory
-- Ensure Keycloak was restarted after theme installation
-- Check Keycloak logs for loading errors
+   - Navigate to `http://your-keycloak-url/admin`
 
-**Development Server Issues:**
+2. **Select your Realm**
 
-```bash
-# Check if ports are available
-lsof -i :3000  # Vite dev server
-lsof -i :6006  # Storybook
-lsof -i :8090  # Keycloak
-```
+   - Choose the realm you want to apply the theme to
 
-### Getting Help
+3. **Configure Theme Settings**
 
-1. Check the [Keycloakify documentation](https://docs.keycloakify.dev/)
-2. Review [shadcn/ui documentation](https://ui.shadcn.com/)
-3. Open an issue on GitHub for bug reports
-4. Join the Keycloakify Discord community
+   - Go to **Realm Settings** → **Themes** tab
+   - Under **Login Theme**, select `shadcn-theme` from the dropdown
+   - Click **Save**
 
-## 🤝 Contributing
+4. **Test the Theme**
+   - Log out from the admin console
+   - Visit your application's login page
+   - You should now see the modern Shadcn theme
 
-Contributions are welcome! Please follow these steps:
+That's it! Your Keycloak instance now has a modern, beautiful login experience.
 
-1. **Fork the repository**
-2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
-3. **Make your changes** following the existing code style
-4. **Test thoroughly** using Storybook and Docker environment
-5. **Format code**: `pnpm format`
-6. **Commit changes**: Use conventional commit messages
-7. **Push to branch**: `git push origin feature/amazing-feature`
-8. **Open a Pull Request**
+## 👨‍💻 Developer Guide
 
-### Development Guidelines
+Want to customize the theme or contribute to development?
 
-- Follow existing TypeScript and React patterns
-- Add Storybook stories for new components
-- Ensure accessibility compliance
-- Test across different Keycloak flows
-- Update documentation for new features
+Check out the [DEVELOPMENT.md](DEVELOPMENT.md) guide for:
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [Keycloakify](https://www.keycloakify.dev/) - For the amazing Keycloak theme framework
-- [shadcn/ui](https://ui.shadcn.com/) - For the beautiful component system
-- [Tailwind CSS](https://tailwindcss.com/) - For the utility-first CSS framework
-- [Geist Font](https://vercel.com/font) - For the modern typography
+- **Development Setup**: Prerequisites, installation, and local environment
+- **Project Architecture**: Understanding the codebase structure
+- **Component Development**: Creating and customizing pages
+- **Theme Customization**: Styling, fonts, and internationalization
+- **Testing**: Storybook and Docker testing workflows
+- **Contributing**: Guidelines for contributing to the project
 
 ## 🗺️ Roadmap
 
@@ -530,6 +238,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Performance optimizations
 - [ ] Accessibility improvements
 - [ ] Additional shadcn/ui components
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [Keycloakify](https://www.keycloakify.dev/) - For the amazing Keycloak theme framework
+- [shadcn/ui](https://ui.shadcn.com/) - For the beautiful component system
+- [Tailwind CSS](https://tailwindcss.com/) - For the utility-first CSS framework
+- [Geist Font](https://vercel.com/font) - For the modern typography
 
 ---
 

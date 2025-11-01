@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+> **For comprehensive developer documentation**, see [DEVELOPMENT.md](DEVELOPMENT.md) which includes detailed setup instructions, customization guides, testing procedures, and contribution guidelines.
+
 ## Commands
 
 ### Development
