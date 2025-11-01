@@ -107,7 +107,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
               className={`mb-4 p-4 rounded-md ${message.type === "error" ? "bg-red-50 text-red-700" : message.type === "warning" ? "bg-yellow-50 text-yellow-700" : message.type === "info" ? "bg-blue-50 text-blue-700" : "bg-green-50 text-green-700"}`}
             >
               <div className="flex">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   {message.type === "success" && (
                     <svg
                       className="h-5 w-5 text-green-400"
