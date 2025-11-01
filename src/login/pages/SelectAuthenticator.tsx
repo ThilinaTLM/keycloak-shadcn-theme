@@ -1,49 +1,43 @@
-import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import { Button } from "@/components/ui/button";
+import { ChevronRight } from "lucide-react";
 
 export default function SelectAuthenticator(props: PageProps<Extract<KcContext, { pageId: "select-authenticator.ftl" }>, I18n>) {
-  const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
+  const { kcContext, i18n, Template } = props;
   const { url, auth } = kcContext;
-
-  const { kcClsx } = getKcClsx({ doUseDefaultCss, classes });
   const { msg, advancedMsg } = i18n;
 
   return (
-    <Template
-      kcContext={kcContext}
-      i18n={i18n}
-      doUseDefaultCss={doUseDefaultCss}
-      classes={classes}
-      displayInfo={false}
-      headerNode={msg("loginChooseAuthenticator")}
-    >
-      <form id="kc-select-credential-form" className={kcClsx("kcFormClass")} action={url.loginAction} method="post">
-        <div className={kcClsx("kcSelectAuthListClass")}>
-          {auth.authenticationSelections.map((authenticationSelection, i) => (
-            <button
-              key={i}
-              className={kcClsx("kcSelectAuthListItemClass")}
-              type="submit"
-              name="authenticationExecution"
-              value={authenticationSelection.authExecId}
-            >
-              <div className={kcClsx("kcSelectAuthListItemIconClass")}>
-                <i className={kcClsx("kcSelectAuthListItemIconPropertyClass", authenticationSelection.iconCssClass)} />
-              </div>
-              <div className={kcClsx("kcSelectAuthListItemBodyClass")}>
-                <div className={kcClsx("kcSelectAuthListItemHeadingClass")}>{advancedMsg(authenticationSelection.displayName)}</div>
-                <div className={kcClsx("kcSelectAuthListItemDescriptionClass")}>{advancedMsg(authenticationSelection.helpText)}</div>
-              </div>
-              <div className={kcClsx("kcSelectAuthListItemFillClass")} />
-              <div className={kcClsx("kcSelectAuthListItemArrowClass")}>
-                <i className={kcClsx("kcSelectAuthListItemArrowIconClass")} />
-              </div>
-            </button>
-          ))}
+    <Template {...props} displayInfo={false} headerNode={msg("loginChooseAuthenticator")}>
+      <div className="w-full max-w-md">
+        <div className="py-2 px-4 sm:rounded-lg sm:px-6">
+          <form id="kc-select-credential-form" action={url.loginAction} method="post" className="space-y-3">
+            {auth.authenticationSelections.map((authenticationSelection, i) => (
+              <Button
+                key={i}
+                type="submit"
+                name="authenticationExecution"
+                value={authenticationSelection.authExecId}
+                variant="outline"
+                className="w-full h-auto p-4 flex items-center justify-start gap-4 hover:bg-accent"
+              >
+                {authenticationSelection.iconCssClass && (
+                  <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-primary/10">
+                    <i className={`${authenticationSelection.iconCssClass} text-primary text-xl`} aria-hidden="true" />
+                  </div>
+                )}
+                <div className="flex-1 text-left space-y-1">
+                  <div className="font-medium text-foreground">{advancedMsg(authenticationSelection.displayName)}</div>
+                  <div className="text-sm text-muted-foreground">{advancedMsg(authenticationSelection.helpText)}</div>
+                </div>
+                <ChevronRight className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+              </Button>
+            ))}
+          </form>
         </div>
-      </form>
+      </div>
     </Template>
   );
 }
