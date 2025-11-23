@@ -30,6 +30,7 @@ A modern, beautiful, and fully customizable Keycloak login theme built with [Key
 - [Screenshots](#-screenshots)
 - [Quick Start](#-quick-start)
 - [Activating the Theme](#-activating-the-theme)
+- [Logo Customization](#%EF%B8%8F-logo-customization)
 - [Developer Guide](#-developer-guide)
 - [Roadmap](#%EF%B8%8F-roadmap)
 - [License](#-license)
@@ -223,6 +224,85 @@ After installation, configure your realm to use the new theme:
 
 That's it! Your Keycloak instance now has a modern, beautiful login experience.
 
+## 🖼️ Logo Customization
+
+The theme supports custom logos with a flexible fallback system. Logos can be customized per realm, per client, and per theme mode (dark/light).
+
+### Logo Priority Order
+
+The theme looks for logo images in the following order:
+
+1. `{realm}_{client}_{dark|light}.png` - Client-specific with theme variant
+2. `{realm}_{client}.png` - Client-specific (any theme)
+3. `{realm}_{dark|light}.png` - Realm-wide with theme variant
+4. `{realm}.png` - Realm-wide fallback
+5. **Text fallback** - Displays the realm's display name if no images are found
+
+### Setup
+
+Place your logo files in the `public/` directory before building the theme:
+
+```
+public/
+├── myrealm_myapp_dark.png    # Dark mode logo for "myapp" client in "myrealm"
+├── myrealm_myapp_light.png   # Light mode logo for "myapp" client
+├── myrealm_myapp.png         # Default logo for "myapp" client (any theme)
+├── myrealm_dark.png          # Dark mode logo for all clients in "myrealm"
+├── myrealm_light.png         # Light mode logo for all clients
+└── myrealm.png               # Default logo for "myrealm" (all clients, any theme)
+```
+
+### Example
+
+For a realm named `production` with clients `webapp` and `mobile`:
+
+```
+public/
+├── production_webapp_dark.png   # Webapp gets custom dark logo
+├── production_webapp_light.png  # Webapp gets custom light logo
+├── production_mobile.png        # Mobile app uses same logo for both themes
+└── production.png               # Fallback for any other clients
+```
+
+> **Note**: The `{realm}` and `{client}` values must match exactly with your Keycloak realm name and client ID (not display name).
+
+### Adding Logos to Pre-built Theme
+
+If you're using the pre-built `shadcn-theme.jar` from releases, you can inject logo files without rebuilding the theme. The logos need to be placed in `theme/shadcn-theme/login/resources/dist/` inside the JAR.
+
+**Using Docker multi-stage build:**
+
+```dockerfile
+# Stage 1: Inject logos into the theme JAR
+FROM eclipse-temurin:17 AS theme-builder
+
+WORKDIR /build
+
+COPY ./shadcn-theme.jar ./theme.jar
+COPY ./logos/myrealm.png ./myrealm.png
+COPY ./logos/myrealm_dark.png ./myrealm_dark.png
+
+# Add logos to the JAR
+RUN mkdir -p theme/shadcn-theme/login/resources/dist \
+    && mv myrealm.png theme/shadcn-theme/login/resources/dist/ \
+    && mv myrealm_dark.png theme/shadcn-theme/login/resources/dist/ \
+    && jar uf theme.jar -C . theme/
+
+# Stage 2: Final Keycloak image
+FROM quay.io/keycloak/keycloak:26.0
+
+COPY --from=theme-builder /build/theme.jar /opt/keycloak/providers/shadcn-theme.jar
+```
+
+**Manual JAR modification:**
+
+```bash
+# Extract, add logos, and repack
+mkdir -p theme/shadcn-theme/login/resources/dist
+cp your-logo.png theme/shadcn-theme/login/resources/dist/myrealm.png
+jar uf shadcn-theme.jar -C . theme/
+```
+
 ## 👨‍💻 Developer Guide
 
 Want to customize the theme or contribute to development?
@@ -241,7 +321,7 @@ Check out the [DEVELOPMENT.md](DEVELOPMENT.md) guide for:
 - [ ] Admin theme implementation
 - [x] Dark mode toggle
 - [ ] Additional language support
-- [ ] Custom branding system
+- [x] Custom branding system (logo customization)
 - [ ] Advanced form validation
 - [ ] Performance optimizations
 - [ ] Accessibility improvements

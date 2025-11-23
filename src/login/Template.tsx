@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import type { TemplateProps } from "keycloakify/login/TemplateProps";
 import { useSetClassName } from "keycloakify/tools/useSetClassName";
@@ -8,6 +9,67 @@ import type { KcContext } from "./KcContext";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle2, TriangleAlert, XCircle, Info } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
+
+/**
+ * Hook to resolve logo URL with fallback chain:
+ * 1. {realm}_{client}_{dark|light}.png
+ * 2. {realm}_{client}.png
+ * 3. {realm}_{dark|light}.png
+ * 4. {realm}.png
+ * Returns null if no image loads successfully.
+ */
+function useLogoUrl(realmName: string, clientId: string): string | null {
+  const { resolvedTheme } = useTheme();
+  const [logoUrl, setLogoUrl] = useState<string | null>(null);
+  const [isResolved, setIsResolved] = useState(false);
+
+  const mode = resolvedTheme === "dark" ? "dark" : "light";
+  const baseUrl = import.meta.env.BASE_URL;
+
+  useEffect(() => {
+    const candidates = [
+      `${baseUrl}${realmName}_${clientId}_${mode}.png`,
+      `${baseUrl}${realmName}_${clientId}.png`,
+      `${baseUrl}${realmName}_${mode}.png`,
+      `${baseUrl}${realmName}.png`
+    ];
+
+    let cancelled = false;
+
+    async function tryLoadImages() {
+      for (const url of candidates) {
+        if (cancelled) return;
+
+        const success = await new Promise<boolean>((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve(true);
+          img.onerror = () => resolve(false);
+          img.src = url;
+        });
+
+        if (success && !cancelled) {
+          setLogoUrl(url);
+          setIsResolved(true);
+          return;
+        }
+      }
+
+      if (!cancelled) {
+        setLogoUrl(null);
+        setIsResolved(true);
+      }
+    }
+
+    setIsResolved(false);
+    tryLoadImages();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [realmName, clientId, mode, baseUrl]);
+
+  return isResolved ? logoUrl : null;
+}
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
   const {
@@ -26,7 +88,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
   const { msg, msgStr, currentLanguage, enabledLanguages } = i18n;
 
-  const { realm, auth, url, message, isAppInitiatedAction } = kcContext;
+  const { realm, auth, url, message, isAppInitiatedAction, client } = kcContext;
 
   useEffect(() => {
     document.title = documentTitle ?? msgStr("loginTitle", kcContext.realm.displayName);
@@ -38,6 +100,8 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
   });
 
   const { isReadyToRender } = useInitialize({ kcContext, doUseDefaultCss: false });
+
+  const logoUrl = useLogoUrl(realm.name, client.clientId);
 
   if (!isReadyToRender) {
     return null;
@@ -51,15 +115,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
       </div>
       <div className="w-full sm:mx-auto sm:max-w-md">
         <h2 className="text-center text-2xl sm:text-3xl lg:text-4xl font-extrabold text-foreground uppercase">
-          <img
-            src={`${import.meta.env.BASE_URL}${realm.name}.png`}
-            width={500}
-            onError={(e) => {
-              e.currentTarget.style.display = "none";
-              e.currentTarget.nextElementSibling?.removeAttribute("hidden");
-            }}
-          />
-          <div hidden>{msg("loginTitleHtml", realm.displayNameHtml)}</div>
+          {logoUrl ? <img src={logoUrl} width={500} alt={realm.displayName} /> : <span>{msg("loginTitleHtml", realm.displayNameHtml)}</span>}
         </h2>
         {enabledLanguages.length > 1 && (
           <div className="mt-0 fixed right-5 top-5">
