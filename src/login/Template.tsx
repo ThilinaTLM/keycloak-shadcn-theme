@@ -18,7 +18,7 @@ import { ModeToggle } from "@/components/mode-toggle";
  * 4. {realm}.png
  * Returns null if no image loads successfully.
  */
-function useLogoUrl(realmName: string, clientId: string): string | null {
+function useLogoUrl(realmName: string, clientId?: string): string | null {
   const { resolvedTheme } = useTheme();
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
   const [isResolved, setIsResolved] = useState(false);
@@ -27,12 +27,21 @@ function useLogoUrl(realmName: string, clientId: string): string | null {
   const baseUrl = import.meta.env.BASE_URL;
 
   useEffect(() => {
-    const candidates = [
-      `${baseUrl}${realmName}_${clientId}_${mode}.png`,
-      `${baseUrl}${realmName}_${clientId}.png`,
+    const candidates: string[] = [];
+
+    // Add client-specific logos if clientId is available
+    if (clientId) {
+      candidates.push(
+        `${baseUrl}${realmName}_${clientId}_${mode}.png`,
+        `${baseUrl}${realmName}_${clientId}.png`
+      );
+    }
+
+    // Always add realm-level fallbacks
+    candidates.push(
       `${baseUrl}${realmName}_${mode}.png`,
       `${baseUrl}${realmName}.png`
-    ];
+    );
 
     let cancelled = false;
 
@@ -101,7 +110,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
   const { isReadyToRender } = useInitialize({ kcContext, doUseDefaultCss: false });
 
-  const logoUrl = useLogoUrl(realm.name, client.clientId);
+  const logoUrl = useLogoUrl(realm.name, client?.clientId);
 
   if (!isReadyToRender) {
     return null;
